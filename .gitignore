@@ -73,3 +73,5 @@ package-lock.json
 */terraform.tfstate*
 *.terraform*
 env_vars.sh
+
+terraform.tfstate.backup
