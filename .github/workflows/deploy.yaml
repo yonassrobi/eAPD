@@ -1,12 +1,12 @@
 name: 'Deployment'
+permissions:
+  d-token: write
+  contents: read
 on:
   workflow_dispatch:
   push:
     branches:
       - ecs-fargate-poc
-  permissions:
-    d-token: write
-    contents: read
   pull_request:
     branches: [ecs-fargate-poc]
 defaults:
