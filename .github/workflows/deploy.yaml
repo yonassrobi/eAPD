@@ -12,6 +12,7 @@ defaults:
 
 permissions:
   id-token: write
+  contents: read
 
 concurrency: ${{ github.head_ref || github.ref_name || github.run_id }}
 jobs:
@@ -34,15 +35,6 @@ jobs:
         with:
           role-to-assume: ${{ secrets.OIDC_IAM_ROLE_ARN }}
           aws-region: us-east-1
-
-      # - name: Configure AWS credentials
-      #   uses: aws-actions/configure-aws-credentials@v1
-      #   with:
-      #     aws-region: us-east-1
-      #     #aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      #     #aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      #     #aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
-      #     role-to-assume: ${{ secrets.OIDC_IAM_ROLE_ARN }}
 
       - name: Login to Amazon ECR
         id: login-ecr
