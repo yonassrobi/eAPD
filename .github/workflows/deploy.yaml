@@ -1,7 +1,4 @@
 name: 'Deployment'
-permissions:
-  d-token: write
-  contents: read
 on:
   workflow_dispatch:
   push:
