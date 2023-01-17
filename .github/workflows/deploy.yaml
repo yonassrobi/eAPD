@@ -43,7 +43,7 @@ jobs:
       - name: Build, tag, and push the web image to Amazon ECR
         id: build-web-image
         env:
-          ECR_REGISTRY: ${{ secrets.ECR_REGISTRY_URL }}
+          ECR_REGISTRY: ${{ secrets.ECR_REGISTRY }}
           ECR_REPOSITORY: ${{ secrets.WEB_ECR_REPOSITORY }}
         run: |
           # Build a docker container and push it to ECR
@@ -57,7 +57,7 @@ jobs:
       - name: Build, tag, and push the api image to Amazon ECR
         id: build-api-image
         env:
-          ECR_REGISTRY: ${{ secrets.ECR_REGISTRY_URL }}
+          ECR_REGISTRY: ${{ secrets.ECR_REGISTRY }}
           ECR_REPOSITORY: ${{ secrets.API_ECR_REPOSITORY }}
         run: |
           # Build a docker container and push it to ECR
