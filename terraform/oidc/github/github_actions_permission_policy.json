@@ -5,6 +5,11 @@
       "Action": ["ecs:*", "ecr:*"],
       "Effect": "Allow",
       "Resource": "*"
+    },
+    {
+      "Action": ["s3:*"],
+      "Effect": "Allow",
+      "Resource": "*"
     }
   ]
 }
