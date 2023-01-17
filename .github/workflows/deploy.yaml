@@ -73,13 +73,13 @@ jobs:
           terraform_wrapper: false
       - name: Terraform Init
         id: init
-        working-directory: terraform/greenfiel/ecs
+        working-directory: terraform/greenfield/ecs
         run: |
           rm -rf .terraform
           terraform init -backend-config=stage/backend.tfvars -upgrade=true -no-color -input=false
       - name: Terraform Plan
         id: plan
-        working-directory: terraform/greenfiel/ecs
+        working-directory: terraform/greenfield/ecs
         run: |
           terraform plan -input=false -var-file=stage/terraform.tfvars -var "web_image=$WEB_IMAGE" -var "api_image=$API_IMAGE" -no-color
         env:
@@ -87,7 +87,7 @@ jobs:
       - name: Terraform Apply
         if: github.ref == 'refs/heads/ecs-fargate-poc'
         id: apply
-        working-directory: terraform/greenfiel/ecs
+        working-directory: terraform/greenfield/ecs
         run: |
           terraform apply -auto-approve -input=false -var-file=stage/terraform.tfvars -var "web_image=$WEB_IMAGE"  -var "api_image=$API_IMAGE"
         env:
