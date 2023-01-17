@@ -23,13 +23,13 @@ jobs:
     env:
       AWS_DEFAULT_REGION: us-east-1
     steps:
-      - uses: actions/checkout@v2
+      #- uses: actions/checkout@v2
 
       - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v2
+        uses: aws-actions/configure-aws-credentials@v1
         with:
-          aws-region: us-east-1
           role-to-assume: ${{ secrets.OIDC_IAM_ROLE_ARN }}
+          aws-region: us-east-1
 
       # - name: Configure AWS credentials
       #   uses: aws-actions/configure-aws-credentials@v1
