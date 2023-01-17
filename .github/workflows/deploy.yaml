@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - ecs-fargate-poc
+  permissions:
+    d-token: write
+    contents: read
   pull_request:
     branches: [ecs-fargate-poc]
 defaults:
@@ -26,7 +29,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v3
+        uses: aws-actions/configure-aws-credentials@v1
         with:
           aws-region: us-east-1
           role-to-assume: ${{ secrets.OIDC_IAM_ROLE_ARN }}
