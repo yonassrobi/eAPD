@@ -26,9 +26,9 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1
+        uses: aws-actions/configure-aws-credentials@13d241b293754004c80624b5567555c4a39ffbe3
         with:
-          role-to-assume: arn:aws:iam::156322662943:role/delegatedadmin/developer/github-actions-oidc
+          role-to-assume: ${{ secrets.OIDC_IAM_ROLE_ARN }}
           aws-region: us-east-1
 
       # - name: Configure AWS credentials
