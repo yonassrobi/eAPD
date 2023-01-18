@@ -52,8 +52,7 @@ jobs:
           echo "Pushing image to ECR..."
           export WEB_IMAGE=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           docker push $WEB_IMAGE
-          echo $WEB_IMAGE
-          echo $IMAGE_TAG
+          echo "::set-output name=image::${WEB_IMAGE}"
 
       - name: Build, tag, and push the api image to Amazon ECR
         id: build-api-image
@@ -67,8 +66,7 @@ jobs:
           echo "Pushing image to ECR..."
           export API_IMAGE=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           docker push $API_IMAGE
-          echo $API_IMAGE
-          echo $IMAGE_TAG
+          echo "::set-output name=image::${API_IMAGE}"
 
       - uses: hashicorp/setup-terraform@v1
         with:
@@ -85,15 +83,17 @@ jobs:
         run: |
           terraform plan -input=false -var-file=stage/terraform.tfvars -var "web_image=$WEB_IMAGE" -var "api_image=$API_IMAGE" -no-color
         env:
-          APP_IMAGE: ${{steps.build-image.outputs.image}}
+          WEB_IMAGE: ${{steps.build-web-image.outputs.image}}
+          API_IMAGE: ${{steps.build-api-image.outputs.image}}
       - name: Terraform Apply
         if: github.ref == 'refs/heads/ecs-fargate-poc'
         id: apply
         working-directory: terraform/greenfield/ecs
         run: |
-          terraform apply -auto-approve -input=false -var-file=stage/terraform.tfvars -var "web_image=156322662943.dkr.ecr.us-east-1.amazonaws.com/eapd-stage-web:$IMAGE_TAG"  -var "api_image=156322662943.dkr.ecr.us-east-1.amazonaws.com/eapd-stage-api:$IMAGE_TAG"
+          terraform apply -auto-approve -input=false -var-file=stage/terraform.tfvars -var "web_image=$WEB_IMAGE"  -var "api_image=$API_IMAGE"
         env:
-          APP_IMAGE: ${{steps.build-image.outputs.image}}
+          WEB_IMAGE: ${{steps.build-web-image.outputs.image}}
+          API_IMAGE: ${{steps.build-api-image.outputs.image}}
       - name: Terraform destroy
         if: github.ref == 'refs/heads/destroy'
         id: destroy
@@ -101,4 +101,5 @@ jobs:
         run: |
           terraform destroy -auto-approve -input=false -var-file=stage/terraform.tfvars
         env:
-          APP_IMAGE: ${{steps.build-image.outputs.image}}
+          WEB_IMAGE: ${{steps.build-web-image.outputs.image}}
+          API_IMAGE: ${{steps.build-api-image.outputs.image}}
