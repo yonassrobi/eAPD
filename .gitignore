@@ -75,3 +75,4 @@ package-lock.json
 env_vars.sh
 
 terraform.tfstate.backup
+terraform/oidc/github/terraform.tfstate
