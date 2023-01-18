@@ -50,9 +50,9 @@ jobs:
           export IMAGE_TAG=$(git rev-parse --short "$GITHUB_SHA")
           docker build --quiet -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -f web/Dockerfile .
           echo "Pushing image to ECR..."
-          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           export WEB_IMAGE=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-          echo "::set-output name=image::${WEB_IMAGE}"
+          docker push $WEB_IMAGE
+          echo $IMAGE_TAG
 
       - name: Build, tag, and push the api image to Amazon ECR
         id: build-api-image
@@ -64,9 +64,9 @@ jobs:
           export IMAGE_TAG=$(git rev-parse --short "$GITHUB_SHA")
           docker build --quiet -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -f api/Dockerfile .
           echo "Pushing image to ECR..."
-          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           export API_IMAGE=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-          echo "::set-output name=image::${API_IMAGE}"
+          docker push $API_IMAGE
+          echo $IMAGE_TAG
 
       - uses: hashicorp/setup-terraform@v1
         with:
@@ -81,6 +81,8 @@ jobs:
         id: plan
         working-directory: terraform/greenfield/ecs
         run: |
+          echo $WEB_IMAGE
+          echo $API_IMAGE
           terraform plan -input=false -var-file=stage/terraform.tfvars -var "web_image=$WEB_IMAGE" -var "api_image=$API_IMAGE" -no-color
         env:
           APP_IMAGE: ${{steps.build-image.outputs.image}}
