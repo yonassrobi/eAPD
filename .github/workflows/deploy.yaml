@@ -91,7 +91,7 @@ jobs:
         id: apply
         working-directory: terraform/greenfield/ecs
         run: |
-          terraform apply -auto-approve -input=false -var-file=stage/terraform.tfvars -var "web_image=156322662943.dkr.ecr.us-east-1.amazonaws.com/eapd-stage-web:9f7f32b"  -var "api_image=156322662943.dkr.ecr.us-east-1.amazonaws.com/eapd-dev-web:9f7f32b"
+          terraform apply -auto-approve -input=false -var-file=stage/terraform.tfvars -var "web_image=156322662943.dkr.ecr.us-east-1.amazonaws.com/eapd-stage-web:$IMAGE_TAG"  -var "api_image=156322662943.dkr.ecr.us-east-1.amazonaws.com/eapd-stage-api:$IMAGE_TAG"
         env:
           APP_IMAGE: ${{steps.build-image.outputs.image}}
       - name: Terraform destroy
