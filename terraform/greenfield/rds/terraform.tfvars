@@ -8,7 +8,6 @@
 
   db_name                = "test"
   username               = "postgres"
-  password               = "admin"
   port                   = 5432
 
   
