@@ -57,19 +57,19 @@ jobs:
           docker push $WEB_IMAGE
           echo "::set-output name=image::${WEB_IMAGE}"
 
-      - name: Build, tag, and push the api image to Amazon ECR
-        id: build-api-image
-        env:
-          ECR_REGISTRY: ${{ secrets.ECR_REGISTRY }}
-          ECR_REPOSITORY: ${{ secrets.API_ECR_REPOSITORY }}
-        run: |
-          # Build a docker container and push it to ECR
-          export IMAGE_TAG=$(git rev-parse --short "$GITHUB_SHA")
-          docker build --quiet -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -f api/Dockerfile .
-          echo "Pushing image to ECR..."
-          export API_IMAGE=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-          docker push $API_IMAGE
-          echo "::set-output name=image::${API_IMAGE}"
+      # - name: Build, tag, and push the api image to Amazon ECR
+      #   id: build-api-image
+      #   env:
+      #     ECR_REGISTRY: ${{ secrets.ECR_REGISTRY }}
+      #     ECR_REPOSITORY: ${{ secrets.API_ECR_REPOSITORY }}
+      #   run: |
+      #     # Build a docker container and push it to ECR
+      #     export IMAGE_TAG=$(git rev-parse --short "$GITHUB_SHA")
+      #     docker build --quiet -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -f api/Dockerfile .
+      #     echo "Pushing image to ECR..."
+      #     export API_IMAGE=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+      #     docker push $API_IMAGE
+      #     echo "::set-output name=image::${API_IMAGE}"
 
       - uses: hashicorp/setup-terraform@v1
         with:
@@ -84,19 +84,19 @@ jobs:
         id: plan
         working-directory: terraform/greenfield/ecs
         run: |
-          terraform plan -input=false -var-file=stage/terraform.tfvars -var "web_image=$WEB_IMAGE" -var "api_image=$API_IMAGE" -no-color
+          terraform plan -input=false -var-file=stage/terraform.tfvars -var "web_image=$WEB_IMAGE" -no-color
         env:
           WEB_IMAGE: ${{steps.build-web-image.outputs.image}}
-          API_IMAGE: ${{steps.build-api-image.outputs.image}}
+          #API_IMAGE: ${{steps.build-api-image.outputs.image}}
       - name: Terraform Apply
         if: github.ref == 'refs/heads/ecs-fargate-poc'
         id: apply
         working-directory: terraform/greenfield/ecs
         run: |
-          terraform apply -auto-approve -input=false -var-file=stage/terraform.tfvars -var "web_image=$WEB_IMAGE"  -var "api_image=$API_IMAGE"
+          terraform apply -auto-approve -input=false -var-file=stage/terraform.tfvars -var "web_image=$WEB_IMAGE"
         env:
           WEB_IMAGE: ${{steps.build-web-image.outputs.image}}
-          API_IMAGE: ${{steps.build-api-image.outputs.image}}
+          #API_IMAGE: ${{steps.build-api-image.outputs.image}}
       - name: Terraform destroy
         if: github.ref == 'refs/heads/destroy'
         id: destroy
