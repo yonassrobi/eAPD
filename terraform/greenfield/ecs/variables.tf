@@ -52,7 +52,7 @@ variable "private_subnets" {
 
 # Docker Images
 variable "web_image" {
-  default     = "156322662943.dkr.ecr.us-east-1.amazonaws.com/eapd-dev-app:web" 
+  default     = "156322662943.dkr.ecr.us-east-1.amazonaws.com/eapd-dev-app:nginx" 
   description = "Docker image name with tag for web"
   type        = string
 }

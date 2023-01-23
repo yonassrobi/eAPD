@@ -120,7 +120,7 @@ variable "api_path" {
 }
 
 variable "web_port" {
-  default     = 8000
+  default     = 80
   type        = number
   description = "Port the application runs on"
 }
