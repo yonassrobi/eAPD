@@ -5,14 +5,15 @@ RUN mkdir /app
 WORKDIR /app
 
 COPY package.json .
-COPY babel.config.js . 
+COPY babel.config.js .
 COPY yarn.lock .
-COPY common ./common
-COPY api/package.json ./api/package.json
-
-RUN yarn install --pure-lockfile
-
 COPY api ./api
+COPY common ./common
+
+RUN chown -R node:node /app
+USER node:node
+
+RUN yarn install --frozen-lockfile --non-interactive
 
 # ---
 
