@@ -4,9 +4,11 @@ RUN apk add --no-cache python3 g++ make curl
 RUN mkdir /app
 WORKDIR /app
 
-COPY package.json babel.config.js yarn.lock ./
-COPY api/package.json ./api/package.json
+COPY package.json .
+COPY babel.config.js . 
+COPY yarn.lock .
 COPY common ./common
+COPY api/package.json ./api/package.json
 
 RUN yarn install --pure-lockfile
 
@@ -15,7 +17,6 @@ COPY api ./api
 # ---
 
 FROM node:16.16-alpine
-ENV NODE_ENV production
 
 USER node
 WORKDIR /home/node
