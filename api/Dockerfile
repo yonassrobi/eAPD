@@ -4,7 +4,7 @@ RUN apk add --no-cache python3 g++ make curl
 RUN mkdir /app
 WORKDIR /app
 
-COPY package.json babel.config.js yarn.lock .
+COPY package.json babel.config.js yarn.lock ./
 COPY api/package.json ./api/package.json
 COPY common ./common
 
