@@ -10,7 +10,7 @@ terraform {
 
   backend "s3" {
     bucket         = "aws-cms-oit-iusg-spe-cmcs-macbis-test-tf-state-us-east-1"
-    key            = "mac-fc-infra/image_compliance_test/terraform.tfstate"
+    key            = "mac-fc-infra/image_compliance/terraform.tfstate"
     dynamodb_table = "terraform-state-lock"
     region         = "us-east-1"
     encrypt        = "true"
