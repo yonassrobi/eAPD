@@ -1,239 +1,189 @@
-variable "tags_L2" {
-  description = "tags to add "
-  type        = map(any)
-  default     = {}
-}
-
-variable "rule_name_L2" {
-  description = " sns rule name "
-  type        = string
-  default     = ""
-}
-
-variable "rule_description_L2" {
-  description = " sns rule description "
-  type        = string
-  default     = ""
-}
-
-variable "function_name_L2" {
-  description = "The name of the Lambda function to deploy"
-  type        = string
-  default     = ""
-}
-
-variable "lambda_description_L2" {
-  description = "Description to use for the deployment"
-  type        = string
-  default     = ""
-}
-
-variable "memory_size_L2" {
-  description = "Amount of memory in MB the Lambda Function can use at runtime"
-  type        = number
-  default     = "256"
-}
-
-variable "timeout_L2" {
-  description = "Amount of time the Lambda Function has to run in seconds"
-  type        = number
-  default     = "70"
-}
-
-variable "filename_L2" {
-  description = "Path to the function's deployment package within the local filesystem."
-  type        = string
-  default     = ""
-}
-
-variable "role_name_L2" {
-  description = " name of the role "
-  type        = string
-  default     = ""
-}
-
-variable "role_description_L2" {
-   description = "Description of the role."
-    type       = string 
-    default    = ""
-}
-
-variable "policy_name_L2" {
-  description = " name of the iam policy "
-  type        = string
-  default     = ""
-}
-
-variable "lambda_policy_json_path_L2" {
-  description = " lambdapolicy json path "
-  type        = string
-  default     = ""
-}
-
 variable "tags" {
   description = "tags to add "
   type        = map(any)
   default     = {}
 }
 
-variable "rule_name" {
-  description = " sns rule name "
+variable "identifier" {
+  description = "The name of the RDS instance"
+  type = string
+}
+
+variable "vpc_security_group_ids" {
+  description = "List of security group ids to attach to the DB"
+  type = list(string)
+  default = []
+}
+
+variable "allocated_storage" {
+  description = "The allocated storage in gigabytes"
+  type        = string
+  default     = null
+}
+
+
+variable "license_model" {
+  description = "License model information for this DB instance. Optional, but required for some DB s, i.e. Oracle SE1"
+  type        = string
+  default     = null
+}
+
+
+variable "engine" {
+  description = "The database engine to use"
+  type        = string
+  default     = null
+}
+
+variable "engine_version" {
+  description = "The engine version to use"
+  type        = string
+  default     = null
+}
+
+variable "instance_class" {
+  description = "The instance type of the RDS instance"
+  type        = string
+  default     = null
+}
+
+variable "db_name" {
+  description = "The DB name to create. If omitted, no database is created initially"
+  type        = string
+  default     = null
+}
+
+variable "username" {
+  description = "Username for the master DB user"
+  type        = string
+  default     = null
+}
+
+variable "password" {
+  description = "Password for the master DB user. Note that this may show up in logs, and it will be stored in the state file"
+  type        = string
+  default     = null
+}
+
+variable "port" {
+  description = "The port on which the DB accepts connections"
+  type        = string
+  default     = null
+}
+
+
+variable "skip_final_snapshot" {
+  description = "Determines whether a final DB snapshot is created before the DB instance is deleted. If true is specified, no DBSnapshot is created. If false is specified, a DB snapshot is created before the DB instance is deleted"
+  type        = bool
+  default     = true
+}
+
+variable "final_snapshot_identifier" {
+  description = "The name  to the final snapshot on db destroy"
   type        = string
   default     = ""
 }
 
-variable "rule_description" {
-  description = " sns rule description "
+variable "db_subnet_group_name" {
+  description = "Name of DB subnet group. DB instance will be created in the VPC associated with the DB subnet group. If unspecified, will be created in the default VPC"
   type        = string
-  default     = ""
+  default     = null
 }
 
-variable "function_name" {
-  description = "The name of the Lambda function to deploy"
+variable "parameter_group_name" {
+  description = "Name of the DB parameter group to associate"
   type        = string
-  default     = ""
+  default     = null
 }
 
-variable "lambda_description" {
-  description = "Description to use for the deployment"
-  type        = string
-  default     = ""
+variable "deletion_protection" {
+  description = "The database can't be deleted when this value is set to true."
+  type        = bool
+  default     = false
 }
 
-variable "handler" {
-  description = "Function entrypoint"
-  type        = string
-  default     = ""
+
+variable "prevent_destroy" {
+  description = "prevent terraform destroying db if value is set to true."
+  type        = bool
+  default     = true
 }
 
-variable "memory_size" {
-  description = "Amount of memory in MB the Lambda Function can use at runtime"
+
+variable "publicly_accessible" {
+  description = "Bool to control if instance is publicly accessible"
+  type        = bool
+  default     = false
+}
+
+variable "availability_zone" {
+  description = "The Availability Zone of the RDS instance"
+  type        = string
+  default     = null
+}
+
+variable "multi_az" {
+  description = "Specifies if the RDS instance is multi-AZ"
+  type        = bool
+  default     = false
+}
+
+variable "aws_secretsmanager_secret_name" {
+  description = "Name of aws secretsmanager secret"
+  type        = string
+  default     = null
+}
+
+variable "recovery_window_in_days" {
+  description = "recovery window in days"
   type        = number
-  default     = "256"
+  default     = 0
 }
 
-variable "runtime" {
-  description = "Identifier of the function's runtime"
-  type        = string
-  default     = ""
+variable "create_cloudwatch_log_group" {
+  description = "Determines whether a CloudWatch log group is created for each `enabled_cloudwatch_logs_exports`"
+  type        = bool
+  default     = true
 }
 
-variable "timeout" {
-  description = "Amount of time the Lambda Function has to run in seconds"
+variable "cloudwatch_log_group_retention_in_days" {
+  description = "The number of days to retain CloudWatch logs for the DB instance"
   type        = number
-  default     = "70"
+  default     = 7
 }
 
-variable "filename" {
-  description = "Path to the function's deployment package within the local filesystem."
+variable "cloudwatch_log_group_kms_key_id" {
+  description = "The ARN of the KMS Key to use when encrypting log data"
+  type        = string
+  default     = null
+}
+
+variable "enabled_cloudwatch_logs_exports" {
+  description = "List of log types to enable for exporting to CloudWatch logs. If omitted, no logs will be exported. Valid values (depending on engine): alert, audit, error, general, listener, slowquery, trace, postgresql (PostgreSQL), upgrade (PostgreSQL)."
+  type        = list(string)
+  default     = []
+}
+
+variable "subnet_ids" {
+  description = "A list of VPC subnet IDs"
+  type        = list(string)
+  default     = []
+}
+
+variable "subnet_group_name" {
+  description = "The name of the DB subnet group"
   type        = string
   default     = ""
 }
 
-variable "role_name" {
-  description = " name of the role "
+variable "family" {
+  description = "The family of the DB parameter group"
   type        = string
-  default     = ""
+  default     = null
 }
 
-variable "role_description" {
-   description = "Description of the role."
-    type       = string 
-    default    = ""
-}
-
-variable "policy_name" {
-  description = " name of the iam policy "
-  type        = string
-  default     = ""
-}
-
-variable "detail-type" {
-  description = " event pattern detail type "
-  type        = string
-  default     = ""
-}
-
-variable "rule_source" {
-  description = " event patter source "
-  type        = string
-  default     = ""
-}
-
-variable "lambda_policy_json_path" {
-  description = " lambdapolicy json path "
-  type        = string
-  default     = ""
-}
-
-variable "tags_L3" {
-  description = "tags to add "
-  type        = map(any)
-  default     = {}
-}
-
-variable "rule_name_L3" {
-  description = " sns rule name "
-  type        = string
-  default     = ""
-}
-
-variable "rule_description_L3" {
-  description = " sns rule description "
-  type        = string
-  default     = ""
-}
-
-variable "function_name_L3" {
-  description = "The name of the Lambda function to deploy"
-  type        = string
-  default     = ""
-}
-
-variable "lambda_description_L3" {
-  description = "Description to use for the deployment"
-  type        = string
-  default     = ""
-}
-
-variable "memory_size_L3" {
-  description = "Amount of memory in MB the Lambda Function can use at runtime"
-  type        = number
-  default     = "256"
-}
-
-variable "timeout_L3" {
-  description = "Amount of time the Lambda Function has to run in seconds"
-  type        = number
-  default     = "70"
-}
-
-variable "filename_L3" {
-  description = "Path to the function's deployment package within the local filesystem."
-  type        = string
-  default     = ""
-}
-
-variable "role_name_L3" {
-  description = " name of the role "
-  type        = string
-  default     = ""
-}
-
-variable "role_description_L3" {
-   description = "Description of the role."
-    type       = string 
-    default    = ""
-}
-
-variable "policy_name_L3" {
-  description = " name of the iam policy "
-  type        = string
-  default     = ""
-}
-
-variable "lambda_policy_json_path_L3" {
-  description = " lambdapolicy json path "
-  type        = string
-  default     = ""
+variable "parameters" {
+  description = "A list of DB parameter maps to apply"
+  type        = list(map(string))
+  default     = []
 }

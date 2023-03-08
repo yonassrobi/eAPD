@@ -1,42 +1,26 @@
+ #rds
+ identifier             = "eapd-dev-postgres"
 
-#lambda1
- function_name       = "ECR2SecurityHubSendFindingsLambda"
- lambda_description  = "Maps ECR Scan Finding into ASFF before importing to Security Hub"   
- memory_size          = 384
- timeout             = 70
- filename            = "ECR2SecHubFind.zip"
+  engine                 = "postgres"
+  engine_version         = "13.7"
+  instance_class         = "db.t3.large"
+  allocated_storage      = 100
 
- rule_name           = "CaptureECRScanEvent"
- rule_description    = "Capture ECR Scan Events and Trigger an Action"
+  db_name                = "eapd-dev-db"
+  username               = "postgres"
+  port                   = 5432
+  
+  
 
- role_name           = "ECRToSecHubSendFindingsLambdaRole"
- role_description    = "ECRToSecHubSendFindingsLambda-Policy "
- policy_name         = "ECRToSecHubSendFindingsLambda-Policy"
- lambda_policy_json_path = "ECRToSecHubSendFindingsLambdaRole-policy.json"
+  vpc_security_group_ids = ["sg-0f51b02ff4e3fe26d"]
+  subnet_group_name   = "privet-sbg"
+  parameter_group_name   = "postgres"
+  family                 = "postgres13"
+  subnet_ids             = [ "subnet-01c495bc99a10d98b", "subnet-05f418b1af86a8610" ]
+  
 
-#lambda2
- function_name_L2       = "ECRAccessProhibitedLambda"
- lambda_description_L2  = "ECR1 - Deny Access to ECR due to vulnerability assesment"   
- memory_size_L2         = 256
- timeout_L2             = 60
- filename_L2            = "ECRAccProhibited.zip"
-
- rule_name_L2           = "ECRAccessProhibitedRule"
- rule_description_L2    = "ECR1 - Deny Access to ECR due to vulnerability assesment"
-
- role_name_L2           = "ECRAccessProhibitedLambdaRole"
- role_description_L2    = "ECRToSecHubSendFindingsLambda-Policy "
- policy_name_L2         = "ECRAccessProhibitedLambdaPolicy"
- lambda_policy_json_path_L2 = "ECRAccessProhibitedLambda-policy.json"
-
- #lambda3
- function_name_L3       = "CreateSecurityHubCustomActionTargetLambda-ECR"
- lambda_description_L3  = "Custom resource to create an action target in Security Hub"   
- memory_size_L3         = 256
- timeout_L3             = 60
- filename_L3            = "CustomActionTarget.zip"
-
- role_name_L3           = "SecurityHubCustomActionTargetLambdaRole"
- role_description_L3    = "CreateSecurityHubCustomActionTargetLambdaRole "
- policy_name_L3         = "CreateActionTarget-LambdaPolicy-ECR"
- lambda_policy_json_path_L3 = "CreateActionTarget-LambdaPolicy-ECR-policy.json"
+  skip_final_snapshot       = true
+  final_snapshot_identifier = "eapd-dev-postgres"
+  deletion_protection       = false
+  aws_secretsmanager_secret_name = "eapd-dev-postgres-pass"
+  recovery_window_in_days = 0
