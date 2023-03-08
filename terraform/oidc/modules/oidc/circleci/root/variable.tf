@@ -1,3 +1,8 @@
+variable "url"{
+  description = "The URL of the identity provider"
+  type        = string
+  default     = ""
+}
 variable "subject_claim_filters" {
   description = "A list of valid subject claim filters" # see https://circleci.com/docs/openid-connect-tokens/
   type        = list(string)
@@ -20,14 +25,14 @@ variable "oidc_provider_role_name"{
     type = string
 }
 
-variable github_actions_roles {
-  description = "list of roles"
+variable circleci_project_role {
+  description = "list of project roles"
   type        = list(object({
 
     role_name: string
     description: string
     policy_name: string
-    role_permissions_policy_json_path: string
+    project_permissions_policy_json_path: string
   
   }))
   default = []
