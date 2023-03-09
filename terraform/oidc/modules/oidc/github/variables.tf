@@ -6,18 +6,19 @@ variable "subject_claim_filters" {
 variable "audience_list" {
   description = "A list of allowed audiences (AKA client IDs) for the AWS identity provider"
   type        = list(string)
-  default     = [] # the default audience for the Circleci OIDC provider, see https://circleci.com/docs/openid-connect-tokens/
+  default     = [ "sts.amazonaws.com" ] # the default audience for the Circleci OIDC provider, see https://circleci.com/docs/openid-connect-tokens/
   }
 
 variable "thumbprint_list" {
   description = " A list of thumbprints for the OIDC identity provider's server certificate"
   type        = list(string)
-  default     = [] # see https://github.blog/changelog/2022-01-13-github-actions-update-on-oidc-based-deployments-to-aws/ and https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_create_oidc_verify-thumbprint.html
+  default     = [ "6938fd4d98bab03faadb97b34396831e3780aea1" ] # see https://github.blog/changelog/2022-01-13-github-actions-update-on-oidc-based-deployments-to-aws/ and https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_create_oidc_verify-thumbprint.html
 }
 
 variable "oidc_provider_role_name"{
     description = "OIDC Identity Provider role name"
-    type = string
+    type        = string
+    default     = " "
 }
 
 variable github_actions_roles {

@@ -1,7 +1,7 @@
 
   subject_claim_filters                      = ["org/b874a13f-2c70-4cd1-aaa6-edac8cc75526/project/fc98eb8c-5243-4286-9cbc-3b9305401c76/user/*"]
-  audience_list                              = ["b874a13f-2c70-4cd1-aaa6-edac8cc75526"]
-  thumbprint_list                            = ["9e99a48a9960b14926bb7f3b02e22da2b0ab7280"]
+  #audience_list                              = ["b874a13f-2c70-4cd1-aaa6-edac8cc75526"]
+  #thumbprint_list                            = ["9e99a48a9960b14926bb7f3b02e22da2b0ab7280"]
   oidc_provider_role_name                    =  "github-actions-identity-provider-role"
 
   github_actions_roles = [
