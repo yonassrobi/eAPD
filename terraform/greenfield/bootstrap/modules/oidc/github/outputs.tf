@@ -8,3 +8,4 @@ output "role_arn"{
     for k, role in aws_iam_role.github_actions_oidc_role : k => role.arn
   }
 }
+
