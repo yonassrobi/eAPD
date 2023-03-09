@@ -15,3 +15,8 @@ output "api_ecr_repository" {
   description = "api ecr repository url"
   value       = aws_ecr_repository.api-ecr.repository_url
 }
+
+output "db_endpoint" {
+  description = "The endpoint of the RDS database"
+  value = module.aws-rds.db_endpoint
+}

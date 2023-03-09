@@ -1,55 +1,3 @@
-variable "subject_claim_filters" {
-  description = "A list of valid subject claim filters" # see https://circleci.com/docs/openid-connect-tokens/
-  type        = list(string)
-}
-
-# General
-variable "region" { 
-  default     = "us-east-1" 
-  description = "AWS region"
-}
-
-variable "environment" { 
-  description = "Environment name"
-}
-
-variable "project" { 
-  default     = "eapd" 
-  description = "Project name" 
-}
-
-variable "team" { 
-  default     = "eapd" 
-  description = "Team name"
-}
-
-# Github OIDC
-variable "audience_list" {
-  description = "A list of allowed audiences (AKA client IDs) for the AWS identity provider"
-  type        = list(string)
-  default     = ["sts.amazonaws.com"] # the default audience for the GitHub OIDC provider, see https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services#adding-the-identity-provider-to-aws
-}
-
-variable "thumbprint_list" {
-  description = " A list of thumbprints for the OIDC identity provider's server certificate"
-  type        = list(string)
-  default     = ["6938fd4d98bab03faadb97b34396831e3780aea1"] # see https://github.blog/changelog/2022-01-13-github-actions-update-on-oidc-based-deployments-to-aws/ and https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_create_oidc_verify-thumbprint.html
-}
-
-variable github_actions_roles {
-  description = "list of roles"
-  type        = list(object({
-
-    role_name: string
-    description: string
-    policy_name: string
-    role_permissions_policy_json_path: string
-  
-  }))
-  default = []
-}
-
-#RDS
 
 variable "tags" {
   description = "tags to add "
@@ -128,7 +76,7 @@ variable "port" {
 variable "skip_final_snapshot" {
   description = "Determines whether a final DB snapshot is created before the DB instance is deleted. If true is specified, no DBSnapshot is created. If false is specified, a DB snapshot is created before the DB instance is deleted"
   type        = bool
-  default     = true
+  #default     = true
 }
 
 variable "final_snapshot_identifier" {
@@ -162,7 +110,6 @@ variable "prevent_destroy" {
   default     = true
 }
 
-
 variable "publicly_accessible" {
   description = "Bool to control if instance is publicly accessible"
   type        = bool
@@ -190,13 +137,13 @@ variable "aws_secretsmanager_secret_name" {
 variable "recovery_window_in_days" {
   description = "recovery window in days"
   type        = number
-  default     = 0
 }
 
+# Cloudwatch Log group
 variable "create_cloudwatch_log_group" {
   description = "Determines whether a CloudWatch log group is created for each `enabled_cloudwatch_logs_exports`"
   type        = bool
-  default     = true
+  default     = false
 }
 
 variable "cloudwatch_log_group_retention_in_days" {
@@ -216,31 +163,3 @@ variable "enabled_cloudwatch_logs_exports" {
   type        = list(string)
   default     = []
 }
-
-variable "subnet_ids" {
-  description = "A list of VPC subnet IDs"
-  type        = list(string)
-  default     = []
-}
-
-variable "subnet_group_name" {
-  description = "The name of the DB subnet group"
-  type        = string
-  default     = ""
-}
-
-variable "family" {
-  description = "The family of the DB parameter group"
-  type        = string
-  default     = null
-}
-
-variable "parameters" {
-  description = "A list of DB parameter maps to apply"
-  type        = list(map(string))
-  default     = []
-}
-
-# S3 Buckets
-
-# Databases
