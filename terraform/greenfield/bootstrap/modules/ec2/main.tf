@@ -40,7 +40,7 @@ data "template_file" "this" {
 
 resource "aws_instance" "this" {
 
-  ami                         = data.aws_ami.this
+  ami                         = data.aws_ami.this.value
   instance_type               = var.instance_type
   user_data                   = data.template_file.this
   subnet_id                   = var.subnet_id
