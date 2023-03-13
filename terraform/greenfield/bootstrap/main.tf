@@ -62,7 +62,7 @@ module "aws-subnet-group" {
 
 
 module "aws-rds" {
-  source      = "./modules/rds"
+  source                 = "./modules/rds"
   identifier             = var.identifier
 
   engine                 = var.engine
@@ -77,13 +77,20 @@ module "aws-rds" {
   port                   = var.port
   
   final_snapshot_identifier = var.final_snapshot_identifier
-  skip_final_snapshot     = var.skip_final_snapshot
-  recovery_window_in_days = var.recovery_window_in_days
-  vpc_security_group_ids  = var.vpc_security_group_ids
-  db_subnet_group_name    = module.aws-subnet-group.db_subnet_group_name
-  parameter_group_name    = module.aws-parameter-group.db_parameter_group_name
+  skip_final_snapshot       = var.skip_final_snapshot
+  recovery_window_in_days   = var.recovery_window_in_days
+  vpc_security_group_ids    = var.vpc_security_group_ids
+  db_subnet_group_name      = module.aws-subnet-group.db_subnet_group_name
+  parameter_group_name      = module.aws-parameter-group.db_parameter_group_name
   enabled_cloudwatch_logs_exports = var.enabled_cloudwatch_logs_exports
+  backup_retention_period   = var.backup_retention_period
+  backup_window             = var.backup_window
 }  
+
+
+# EC2
+
+
 
 # MongoDB
 

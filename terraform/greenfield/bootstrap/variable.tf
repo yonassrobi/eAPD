@@ -241,6 +241,18 @@ variable "parameters" {
   default     = []
 }
 
+variable "backup_retention_period" {
+  description = "The days to retain backups for"
+  type        = number
+  default     = 7
+}
+
+variable "backup_window" {
+  description = "The daily time range (in UTC) during which automated backups are created if they are enabled."
+  type        = string
+  default     = "03:00-06:00"
+}
+
 # S3 Buckets
 
 # Databases
