@@ -51,8 +51,6 @@ resource "aws_instance" "this" {
   dynamic "root_block_device" {
     for_each = var.root_block_devices
     content {
-      encrypted             = lookup(root_block_device.value, "encrypted", null)
-      kms_key_id            = lookup(root_block_device.value, "kms_key_id", null)
       volume_size           = lookup(root_block_device.value, "volume_size", null)
     }
   }
@@ -61,8 +59,6 @@ resource "aws_instance" "this" {
     for_each = var.ebs_block_devices
     content {
       device_name           = ebs_block_device.value.device_name
-      encrypted             = lookup(ebs_block_device.value, "encrypted", null)
-      kms_key_id            = lookup(ebs_block_device.value, "kms_key_id", null)
       volume_size           = lookup(ebs_block_device.value, "volume_size", null)
     }
   }

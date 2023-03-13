@@ -46,6 +46,8 @@ resource "aws_db_instance" "db" {
   final_snapshot_identifier = var.final_snapshot_identifier
   deletion_protection       = var.deletion_protection
   enabled_cloudwatch_logs_exports  = var.enabled_cloudwatch_logs_exports
+  backup_retention_period   = var.backup_retention_period
+  backup_window             = var.backup_window
 
   tags                      = var.tags
 
