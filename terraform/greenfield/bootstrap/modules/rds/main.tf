@@ -48,6 +48,7 @@ resource "aws_db_instance" "db" {
   enabled_cloudwatch_logs_exports  = var.enabled_cloudwatch_logs_exports
   backup_retention_period   = var.backup_retention_period
   backup_window             = var.backup_window
+  storage_encrypted         = true
 
   tags                      = var.tags
 

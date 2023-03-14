@@ -99,7 +99,7 @@ variable "ingresses" {
     default           = []
   }
 
-  dynamic "egresses" {
+variable "egresses" {
     description = "List of egress rules to create by name"
     type = list(object({ 
       from_port       = number

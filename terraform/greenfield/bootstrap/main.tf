@@ -85,10 +85,32 @@ module "aws-rds" {
   enabled_cloudwatch_logs_exports = var.enabled_cloudwatch_logs_exports
   backup_retention_period   = var.backup_retention_period
   backup_window             = var.backup_window
-}  
-
+} 
 
 # EC2
+module "aws-ec2" {
+  source                         = "./modules/ec2"
+  instance_type                  = var.instance_type
+  subnet_id                      = var.subnet_id
+  additional_security_groups     = var.additional_security_groups
+  key_name                       = var.key_name
+  monitoring                     = var.monitoring
+  root_block_device             = var.root_block_device
+  ebs_block_device              = var.ebs_block_device
+  tags                           = var.tags
+  volume_tags                    = var.volume_tags
+
+  vpc_id                      = var.vpc_id
+  security_group_tags         = var.security_group_tags
+  ingresses                   = var.ingresses
+  egresses                    = var.egresses
+  security_group_name         = var.security_group_name
+  security_group_description  = var.security_group_description
+
+
+}
+
+
 
 
 
