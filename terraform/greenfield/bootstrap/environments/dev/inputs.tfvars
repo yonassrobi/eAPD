@@ -12,31 +12,55 @@ github_actions_roles     = [
 #rds
 #rds
 identifier             = "eapd-dev"
-
 engine                 = "postgres"
 engine_version         = "13.7"
 instance_class         = "db.t3.large"
 allocated_storage      = 100
-
 db_name                = "eapd-dev-db"
 username               = "postgres"
 port                   = 5432
-
-
-
-vpc_security_group_ids = ["sg-0f51b02ff4e3fe26d"]
 subnet_group_name      = "eapd-dev-subnet-group"
 parameter_group_name   = "postgres13"
 family                 = "postgres13"
 subnet_ids             = [ "subnet-01c495bc99a10d98b", "subnet-05f418b1af86a8610" ]
-
-
 skip_final_snapshot       = true
 final_snapshot_identifier = "eapd-dev-postgres"
 deletion_protection       = false
 aws_secretsmanager_secret_name = "eapd-dev-postgres-pass"
 recovery_window_in_days   = 0
 enabled_cloudwatch_logs_exports = [ "postgresql", "upgrade" ]
+
+#rds security group
+rds_security_group_name         = "eapd-dev-rds-sg"
+rds_security_group_description  = "eapd-dev-rds-sg"
+rds_security_group_tags = {
+        Name: "eapd-dev-rds-sg"
+}
+
+rds_ingresses = [
+    {
+        from_port       = 5432
+        to_port         = 5432
+        protocol        = "tcp"
+        description     = "db port"
+        cidr_blocks     = [ "10.240.236.128/25", "10.240.236.0/25", "10.240.237.0/25", "10.0.0.0/8"]
+        self            = false
+        security_groups = []
+    }
+
+]
+rds_egresses = [
+    {
+        from_port       = 0
+        to_port         = 0
+        protocol        = "-1"
+        description     = "default egresses"
+        cidr_blocks     = [ "0.0.0.0/0" ]
+        self            = false
+        security_groups = []
+    }
+]
+
 
 #EC2
 instance_type                  = "t3a.large"
@@ -104,3 +128,4 @@ egresses = [
         security_groups = []
     }
 ]
+

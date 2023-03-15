@@ -17,6 +17,15 @@ resource "aws_secretsmanager_secret_version" "db_password" {
   
 }
 
+module "rds-sgs" {
+    source                      = "../security-groups"
+    vpc_id                      = var.vpc_id
+    tags                        = var.security_group_tags
+    ingresses                   = var.ingresses
+    egresses                    = var.egresses
+    security_group_name         = var.security_group_name
+    security_group_description  = var.security_group_description   
+}
 
 resource "aws_db_instance" "db" {
 
@@ -36,7 +45,7 @@ resource "aws_db_instance" "db" {
   
   availability_zone      = var.availability_zone
   multi_az               = var.multi_az
-  vpc_security_group_ids = var.vpc_security_group_ids
+  vpc_security_group_ids = concat([ module.rds-sgs.security_group_id], var.additional_security_groups)
   db_subnet_group_name   = var.db_subnet_group_name
   parameter_group_name   = var.parameter_group_name
   publicly_accessible    = var.publicly_accessible

@@ -79,12 +79,19 @@ module "aws-rds" {
   final_snapshot_identifier = var.final_snapshot_identifier
   skip_final_snapshot       = var.skip_final_snapshot
   recovery_window_in_days   = var.recovery_window_in_days
-  vpc_security_group_ids    = var.vpc_security_group_ids
-  db_subnet_group_name      = module.aws-subnet-group.db_subnet_group_name
-  parameter_group_name      = module.aws-parameter-group.db_parameter_group_name
+  additional_security_groups      = var.additional_security_groups
+  db_subnet_group_name            = module.aws-subnet-group.db_subnet_group_name
+  parameter_group_name            = module.aws-parameter-group.db_parameter_group_name
   enabled_cloudwatch_logs_exports = var.enabled_cloudwatch_logs_exports
-  backup_retention_period   = var.backup_retention_period
-  backup_window             = var.backup_window
+  backup_retention_period         = var.backup_retention_period
+  backup_window                   = var.backup_window
+  
+  vpc_id                      = var.vpc_id
+  security_group_tags         = var.rds_security_group_tags
+  ingresses                   = var.rds_ingresses
+  egresses                    = var.rds_egresses
+  security_group_name         = var.rds_security_group_name
+  security_group_description  = var.rds_security_group_description
 } 
 
 # EC2

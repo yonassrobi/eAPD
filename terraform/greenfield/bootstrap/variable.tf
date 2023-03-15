@@ -253,6 +253,53 @@ variable "backup_window" {
   default     = "03:00-06:00"
 }
 
+# rds Security group
+variable "rds_security_group_name" {
+  description = "security group name"
+  type        = string
+  default     = ""
+}
+
+variable "rds_security_group_description" {
+  description = "security group description"
+  type        = string
+  default     = ""
+}
+
+variable "rds_security_group_tags" {
+  description = "tags to add "
+  type        = map(any)
+  default     = null
+}
+
+variable "rds_ingresses" {
+    description = "List of ingress rules to create by name"
+    type = list(object({ 
+      from_port       = number
+      to_port         = number
+      protocol        = string
+      description     = string
+      cidr_blocks     = list(string)
+      security_groups = list(string)
+      self            = bool
+    }))
+    default           = []
+  }
+
+variable "rds_egresses" {
+    description = "List of egress rules to create by name"
+    type = list(object({ 
+      from_port       = number
+      to_port         = number
+      protocol        = string
+      description     = string
+      cidr_blocks     = list(string)
+      security_groups = list(string)
+      self            = bool
+    }))
+    default           = []
+  }
+
 # EC2
 variable "ami" {
   description = "ID of AMI to use for the instance"

@@ -10,8 +10,8 @@ variable "identifier" {
   type = string
 }
 
-variable "vpc_security_group_ids" {
-  description = "List of security group ids to attach to the DB"
+variable "additional_security_groups" {
+  description = "List of additional security group ids to attach to the DB"
   type = list(string)
   default = []
 }
@@ -175,4 +175,57 @@ variable "backup_window" {
   type        = string
   default     = "03:00-06:00"
 }
+
+# Security group
+variable "security_group_name" {
+  description = "security group name"
+  type        = string
+  default     = ""
+}
+
+variable "security_group_description" {
+  description = "security group description"
+  type        = string
+  default     = ""
+}
+
+variable "vpc_id" {
+  description = "vpc ID"
+  type        = string
+  default     = ""
+}
+
+variable "security_group_tags" {
+  description = "tags to add "
+  type        = map(any)
+  default     = null
+}
+
+variable "ingresses" {
+    description = "List of ingress rules to create by name"
+    type = list(object({ 
+      from_port       = number
+      to_port         = number
+      protocol        = string
+      description     = string
+      cidr_blocks     = list(string)
+      security_groups = list(string)
+      self            = bool
+    }))
+    default           = []
+  }
+
+variable "egresses" {
+    description = "List of egress rules to create by name"
+    type = list(object({ 
+      from_port       = number
+      to_port         = number
+      protocol        = string
+      description     = string
+      cidr_blocks     = list(string)
+      security_groups = list(string)
+      self            = bool
+    }))
+    default           = []
+  }
 
