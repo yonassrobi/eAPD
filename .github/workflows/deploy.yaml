@@ -89,7 +89,7 @@ jobs:
           WEB_IMAGE: ${{steps.build-web-image.outputs.image}}
           API_IMAGE: ${{steps.build-api-image.outputs.image}}
       - name: Terraform Apply
-        if: github.ref == 'refs/heads/ecs-fargate-poc'
+        if: github.ref == 'refs/heads/gf-ecs'
         id: apply
         working-directory: terraform/greenfield/ecs
         run: |
