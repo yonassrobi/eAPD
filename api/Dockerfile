@@ -1,5 +1,4 @@
 FROM node:16.19.1-bullseye-slim as builder
-RUN apk add --no-cache python3 g++ make curl
 
 RUN mkdir /app
 WORKDIR /app
