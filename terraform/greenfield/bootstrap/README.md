@@ -1,8 +1,5 @@
 # Terraform for GitHub OIDC
 
-Please see the [top-level README](../README.md) for general information about
-GitHub OIDC.
-
 ## Usage
 
 This Terraform module is located in a sub-directory, since some users may wish
