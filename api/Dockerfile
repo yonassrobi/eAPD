@@ -9,6 +9,7 @@ COPY api ./api
 COPY common ./common
 
 RUN yarn install --frozen-lockfile --non-interactive
+RUN npm rebuild
 
 # ---
 
