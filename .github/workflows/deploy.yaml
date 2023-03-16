@@ -51,9 +51,9 @@ jobs:
         run: |
           # Build a docker container and push it to ECR
           export IMAGE_TAG=$(git rev-parse --short "$GITHUB_SHA")
-          docker build --quiet -t $ECR_REGISTRY/$WEB_ECR_REPOSITORY:$IMAGE_TAG -f web/Dockerfile .
+          docker build --quiet -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -f web/Dockerfile .
           echo "Pushing image to ECR..."
-          export WEB_IMAGE=$ECR_REGISTRY/$WEB_ECR_REPOSITORY:$IMAGE_TAG
+          export WEB_IMAGE=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           docker push $WEB_IMAGE
           echo "::set-output name=image::${WEB_IMAGE}"
 
@@ -65,9 +65,9 @@ jobs:
         run: |
           # Build a docker container and push it to ECR
           export IMAGE_TAG=$(git rev-parse --short "$GITHUB_SHA")
-          docker build --quiet -t $ECR_REGISTRY/$API_ECR_REPOSITORY:$IMAGE_TAG -f api/Dockerfile .
+          docker build --quiet -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -f api/Dockerfile .
           echo "Pushing image to ECR..."
-          export API_IMAGE=$ECR_REGISTRY/$API_ECR_REPOSITORY:$IMAGE_TAG
+          export API_IMAGE=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           docker push $API_IMAGE
           echo "::set-output name=image::${API_IMAGE}"
 
