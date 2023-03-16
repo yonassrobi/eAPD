@@ -1,4 +1,4 @@
-FROM node:16.16.0-alpine3.15 as builder
+FROM node:16.19.1-bullseye-slim as builder
 RUN apk add --no-cache python3 g++ make
 
 RUN mkdir /app

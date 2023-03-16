@@ -1,4 +1,4 @@
-FROM node:16.16.0-alpine3.15 as builder
+FROM node:16.19.1-bullseye-slim as builder
 RUN apk add --no-cache python3 g++ make curl
 
 RUN mkdir /app
@@ -13,7 +13,7 @@ RUN yarn install --frozen-lockfile --non-interactive
 
 # ---
 
-FROM node:16.16-alpine
+FROM node:16.19.1-bullseye-slim
 
 USER node
 WORKDIR /home/node
