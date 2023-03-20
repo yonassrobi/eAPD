@@ -85,20 +85,20 @@ jobs:
         working-directory: terraform/greenfield/ecs
         run: |
           terraform plan -input=false -var-file=envs/dev/inputs.tfvars -var "web_image=$WEB_IMAGE"
-        env:
-          # WEB_IMAGE: ${{steps.build-web-image.outputs.image}}
-          # API_IMAGE: ${{steps.build-api-image.outputs.image}}
-          # -var "web_image=$WEB_IMAGE" -var "api_image=$API_IMAGE" -no-color
+        #env:
+        # WEB_IMAGE: ${{steps.build-web-image.outputs.image}}
+        # API_IMAGE: ${{steps.build-api-image.outputs.image}}
+        # -var "web_image=$WEB_IMAGE" -var "api_image=$API_IMAGE" -no-color
       - name: Terraform Apply
         if: github.ref == 'refs/heads/gf-ecs'
         id: apply
         working-directory: terraform/greenfield/ecs
         run: |
           terraform apply -auto-approve -input=false -var-file=envs/dev/inputs.tfvars
-        env:
-          # WEB_IMAGE: ${{steps.build-web-image.outputs.image}}
-          # API_IMAGE: ${{steps.build-api-image.outputs.image}}
-          # -var "web_image=$WEB_IMAGE" -var "api_image=$API_IMAGE"
+        #env:
+        # WEB_IMAGE: ${{steps.build-web-image.outputs.image}}
+        # API_IMAGE: ${{steps.build-api-image.outputs.image}}
+        # -var "web_image=$WEB_IMAGE" -var "api_image=$API_IMAGE"
       - name: Terraform destroy
         if: github.ref == 'refs/heads/destroy'
         id: destroy
