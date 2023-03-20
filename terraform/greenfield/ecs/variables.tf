@@ -52,13 +52,13 @@ variable "private_subnets" {
 
 # Docker Images
 variable "web_image" {
-  default     = "894719201277.dkr.ecr.us-east-1.amazonaws.com/eapd-dev-web:" 
+  default     = "894719201277.dkr.ecr.us-east-1.amazonaws.com/eapd-dev-web:34014d1" 
   description = "Docker image name with tag for web"
   type        = string
 }
 
 variable "api_image" {
-  default     = "894719201277.dkr.ecr.us-east-1.amazonaws.com/eapd-dev-api:api" 
+  default     = "894719201277.dkr.ecr.us-east-1.amazonaws.com/eapd-dev-api:34014d1" 
   description = "Docker image name with tag for api"
   type        = string
 }
