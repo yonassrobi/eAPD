@@ -67,6 +67,8 @@
         "iam:ListPolicyVersions",
         "iam:ListRolePolicies",
         "iam:PassRole",
+        "iam:TagRole",
+        "iam:UntagRole",
         "logs:CreateLogGroup",
         "logs:DeleteLogGroup",
         "logs:DescribeLogGroups",
