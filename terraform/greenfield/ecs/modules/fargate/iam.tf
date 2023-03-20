@@ -18,33 +18,33 @@ data "aws_iam_policy_document" "ecs_tasks_assume_role" {
   }
 }
 
-# resource "aws_iam_policy" "task_secrets" {
-#   name_prefix = "${var.name_prefix}-task-secrets-policy"
-#   path = "/delegatedadmin/developer/"
-#   policy      = <<EOF
-# {
-#   "Version": "2012-10-17",
-#   "Statement": [
-#     {
-#       "Effect": "Allow",
-#       "Action": [
-#         "ssm:GetParameters",
-#         "kms:Decrypt"
-#       ],
-#       "Resource": ["*"]
-#     }
-#   ]
-# }
-# EOF
+resource "aws_iam_policy" "task_secrets" {
+  name_prefix = "${var.name_prefix}-task-secrets-policy"
+  path = "/delegatedadmin/developer/"
+  policy      = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "ssm:GetParameters",
+        "kms:Decrypt"
+      ],
+      "Resource": ["*"]
+    }
+  ]
+}
+EOF
   
-# }
+}
 
-# resource "aws_iam_role_policy_attachment" "task" {
-#   role       = aws_iam_role.task.name
-#   policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
-# }
+resource "aws_iam_role_policy_attachment" "task" {
+  role       = aws_iam_role.task.name
+  policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
+}
 
-# resource "aws_iam_role_policy_attachment" "task-secrets" {
-#   role       = aws_iam_role.task.name
-#   policy_arn = aws_iam_policy.task_secrets.arn
-# }
+resource "aws_iam_role_policy_attachment" "task-secrets" {
+  role       = aws_iam_role.task.name
+  policy_arn = aws_iam_policy.task_secrets.arn
+}
