@@ -12,6 +12,7 @@ module "ecs-fargate-service" {
   region              = var.region
   environment         = var.environment
   aws_account         = var.aws_account
+  task_secrets_policy_name = var.task_secrets_policy_name
   
   vpc_id              = var.vpc_id
   vpc_public_subnets  = var.public_subnets
