@@ -86,7 +86,7 @@ jobs:
           AWS_ACCOUNT: ${{ secrets.AWS_ACCOUNT }}
         working-directory: terraform/greenfield/ecs
         run: |
-          terraform plan -input=false -var-file=envs/dev/inputs.tfvars -var "web_image=$WEB_IMAGE"
+          terraform plan -input=false -var-file=envs/dev/inputs.tfvars -var "web_image=$WEB_IMAGE" -var "aws_account=$AWS_ACCOUNT"
         #env:
         # WEB_IMAGE: ${{steps.build-web-image.outputs.image}}
         # API_IMAGE: ${{steps.build-api-image.outputs.image}}
@@ -98,7 +98,7 @@ jobs:
           AWS_ACCOUNT: ${{ secrets.AWS_ACCOUNT }}
         working-directory: terraform/greenfield/ecs
         run: |
-          terraform apply -auto-approve -input=false -var-file=envs/dev/inputs.tfvars
+          terraform apply -auto-approve -input=false -var-file=envs/dev/inputs.tfvars -var "aws_account=$AWS_ACCOUNT"
         #env:
         # WEB_IMAGE: ${{steps.build-web-image.outputs.image}}
         # API_IMAGE: ${{steps.build-api-image.outputs.image}}

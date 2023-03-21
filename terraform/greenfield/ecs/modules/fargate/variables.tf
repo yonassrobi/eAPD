@@ -179,6 +179,7 @@ variable "api_image" {
 
 variable "aws_account" {
   description = "AWS account number"
+  default = ""
 }
 
 variable "task_secrets_policy_name" {
