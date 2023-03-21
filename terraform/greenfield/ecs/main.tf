@@ -11,6 +11,7 @@ module "ecs-fargate-service" {
   team                = var.team
   region              = var.region
   environment         = var.environment
+  aws_account         = var.aws_account
   
   vpc_id              = var.vpc_id
   vpc_public_subnets  = var.public_subnets
