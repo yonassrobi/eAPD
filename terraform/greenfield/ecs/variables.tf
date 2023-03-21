@@ -77,7 +77,7 @@ variable "api_port" {
 
 variable "aws_account" {
   description = "AWS account number"
-  type = number
+  default = "$AWS_ACCOUNT"
 }
 
 variable "task_secrets_policy_name" {
