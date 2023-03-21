@@ -20,3 +20,8 @@ output "db_endpoint" {
   description = "The endpoint of the RDS database"
   value = module.aws-rds.db_endpoint
 }
+
+output "task_secret_policy_arn" {
+  description = "policy arn of task secrets policy "
+  value = aws_iam_policy.task_secrets.arn
+}

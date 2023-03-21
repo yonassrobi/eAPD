@@ -1,4 +1,4 @@
-data "aws_ami" "this" {
+data "aws_ami" "mongoDB-ami" {
   
   most_recent      = true
   #name_regex       = ""
@@ -21,18 +21,11 @@ module "ec2-sgs" {
     security_group_description  = var.security_group_description   
 }
 
-#data "template_file" "this" {
-  #template = "${file("${path.module}/init.tpl")}"
-  #vars = {
-    #variables = var.variables 
-  #}
-#}
 
-resource "aws_instance" "this" {
+resource "aws_instance" "mongoDB-instance" {
 
-  ami                         = data.aws_ami.this.id
+  ami                         = data.aws_ami.mongoDB-ami.id
   instance_type               = var.instance_type
-  #user_data                  = data.template_file.this
   subnet_id                   = var.subnet_id
   vpc_security_group_ids      = concat([ module.ec2-sgs.security_group_id ], var.additional_security_groups )
   key_name                    = var.key_name

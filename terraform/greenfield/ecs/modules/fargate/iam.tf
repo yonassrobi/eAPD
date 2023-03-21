@@ -25,5 +25,5 @@ resource "aws_iam_role_policy_attachment" "task" {
 
 resource "aws_iam_role_policy_attachment" "task-secrets" {
   role       = aws_iam_role.task.name
-  policy_arn = "arn:aws:iam::894719201277:policy/delegatedadmin/developer/eapd-dev-task-secrets-policy20230321143117280200000001"
+  policy_arn = "arn:aws:iam::${var.aws_account}:policy/delegatedadmin/developer/${var.task_secrets_policy_name}"
 }

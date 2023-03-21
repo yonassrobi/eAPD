@@ -82,9 +82,11 @@ jobs:
           terraform init -backend-config=envs/dev/backend.tfvars -upgrade=true -no-color -input=false
       - name: Terraform Plan
         id: plan
+        env:
+          AWS_ACCOUNT: ${{ secrets.AWS_ACCOUNT }}
         working-directory: terraform/greenfield/ecs
         run: |
-          terraform plan -input=false -var-file=envs/dev/inputs.tfvars -var "web_image=$WEB_IMAGE"
+          terraform plan -input=false -var-file=envs/dev/inputs.tfvars -var "web_image=$WEB_IMAGE" -var "aws_account=$AWS_ACCOUNT"
         #env:
         # WEB_IMAGE: ${{steps.build-web-image.outputs.image}}
         # API_IMAGE: ${{steps.build-api-image.outputs.image}}
@@ -92,6 +94,8 @@ jobs:
       - name: Terraform Apply
         if: github.ref == 'refs/heads/gf-ecs'
         id: apply
+        env:
+          AWS_ACCOUNT: ${{ secrets.AWS_ACCOUNT }}
         working-directory: terraform/greenfield/ecs
         run: |
           terraform apply -auto-approve -input=false -var-file=envs/dev/inputs.tfvars

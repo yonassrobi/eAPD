@@ -6,13 +6,13 @@ resource "random_password" "db_password" {
 }
 
 #Push the random password to Aws Secret Manager
-resource "aws_secretsmanager_secret" "db_password" {
+resource "aws_secretsmanager_secret" "db_credential_secret" {
   name                    = var.aws_secretsmanager_secret_name
   recovery_window_in_days = var.recovery_window_in_days
 }
 
 resource "aws_secretsmanager_secret_version" "db_password" {
-  secret_id      = aws_secretsmanager_secret.db_password.id
+  secret_id      = aws_secretsmanager_secret.db_credential_secret.id
   secret_string  = random_password.db_password.result
   
 }
@@ -27,7 +27,7 @@ module "rds-sgs" {
     security_group_description  = var.security_group_description   
 }
 
-resource "aws_db_instance" "db" {
+resource "aws_db_instance" "pg-db" {
 
   identifier             = var.identifier
 
@@ -64,7 +64,7 @@ resource "aws_db_instance" "db" {
 }
 
 # Cloudwatch Log group
-resource "aws_cloudwatch_log_group" "this" {
+resource "aws_cloudwatch_log_group" "db-log-group" {
   for_each = toset([for log in var.enabled_cloudwatch_logs_exports : log if var.create_cloudwatch_log_group ])
 
   name              = "/aws/rds/instance/${var.identifier}/${each.value}"

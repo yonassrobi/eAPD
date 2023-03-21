@@ -1,4 +1,4 @@
-resource "aws_db_parameter_group" "this" {
+resource "aws_db_parameter_group" "db-parameter-group" {
 
   name        = var.name
   description = format("%s parameter group", var.name)

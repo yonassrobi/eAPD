@@ -176,3 +176,14 @@ variable "api_image" {
   type        = string
   description = "Docker image name with tag for api"
 }
+
+variable "aws_account" {
+  description = "AWS account number"
+  type = number
+}
+
+variable "task_secrets_policy_name" {
+  default     = ""
+  description = "task secrets policy name"
+  type        = string
+}

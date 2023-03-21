@@ -1,5 +1,5 @@
 
-resource "aws_db_subnet_group" "this" {
+resource "aws_db_subnet_group" "db-subnet-group" {
 
   name        = var.name
   description = format("%s subnet group", var.name)

@@ -74,3 +74,14 @@ variable "api_port" {
   type        = number
   description = "API port the application runs on"
 }
+
+variable "aws_account" {
+  description = "AWS account number"
+  type = number
+}
+
+variable "task_secrets_policy_name" {
+  default     = ""
+  description = "task secrets policy name"
+  type        = string
+}
