@@ -117,6 +117,28 @@ module "aws-ec2" {
 
 }
 
+#iam policy
+resource "aws_iam_policy" "task_secrets" {
+  name_prefix = "${local.name_prefix}-task-secrets-policy"
+  path = "/delegatedadmin/developer/"
+  policy      = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "ssm:GetParameters",
+        "kms:Decrypt"
+      ],
+      "Resource": ["*"]
+    }
+  ]
+}
+EOF
+  
+}
+
 
 
 
