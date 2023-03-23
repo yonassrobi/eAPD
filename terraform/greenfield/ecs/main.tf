@@ -38,5 +38,5 @@ module "ecs-fargate-service" {
   api_secrets = []
 
   web_health_check_path   = "/"
-  api_health_check_path   = "/healthcheck"  
+  api_health_check_path   = "/heartbeat"  
 }

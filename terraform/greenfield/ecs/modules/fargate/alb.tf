@@ -101,7 +101,7 @@ resource "aws_lb_target_group" "api" {
     enabled             = "true"
     healthy_threshold   = "2"
     interval            = "10"
-    matcher             = "404" 
+    matcher             = "204" 
     path                = var.api_health_check_path
     port                = "traffic-port"
     protocol            = "HTTP"
