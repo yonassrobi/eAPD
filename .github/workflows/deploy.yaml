@@ -84,7 +84,7 @@ jobs:
         id: plan
         working-directory: terraform/greenfield/ecs
         run: |
-          terraform plan -input=false -var-file=envs/dev/inputs.tfvars -var "web_image=$WEB_IMAGE" -var "aws_account=$AWS_ACCOUNT" -var "web_image=$WEB_IMAGE" -var "api_image=$API_IMAGE" -no-color
+          terraform plan -input=false -var-file=envs/dev/inputs.tfvars -var "web_image=$WEB_IMAGE" -var "aws_account=$AWS_ACCOUNT"  -var "api_image=$API_IMAGE" -no-color
         env:
           AWS_ACCOUNT: ${{ secrets.AWS_ACCOUNT }}
           WEB_IMAGE: ${{steps.build-web-image.outputs.image}}
