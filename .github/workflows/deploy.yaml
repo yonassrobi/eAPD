@@ -49,6 +49,7 @@ jobs:
           TEALIUM_ENV: 'dev'
           LD_CLIENT_ID: ${{ secrets.LD_CLIENT_ID }}
           TEALIUM_TAG: ${{ secrets.TEALIUM_TAG }}
+          API_URL: ${{ secrets.API_URL }}
 
         run: |
           # Build a docker container and push it to ECR
