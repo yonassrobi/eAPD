@@ -31,7 +31,7 @@ describe('api wrapper', () => {
       const reset = set();
       //expect(api.defaults.baseURL).toBe('http://localhost:8000');
       expect(api.defaults.baseURL).toBe(
-        'http://eapd-dev-lb-1211471448.us-east-1.elb.amazonaws.com/api'
+        'http://eapd-dev-lb-1872008225.us-east-1.elb.amazonaws.com/api'
       );
       reset();
     });

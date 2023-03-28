@@ -4,7 +4,7 @@ import { getLocalAccessToken } from './auth';
 //export const apiUrl = process.env.API_URL || 'http://localhost:8000';
 export const apiUrl =
   process.env.API_URL ||
-  'http://eapd-dev-lb-1211471448.us-east-1.elb.amazonaws.com/api';
+  'http://eapd-dev-lb-1872008225.us-east-1.elb.amazonaws.com/api';
 
 const axios = axiosClient.create({
   baseURL: apiUrl
