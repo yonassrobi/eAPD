@@ -1,3 +1,9 @@
+ARG OKTA_DOMAIN
+ARG TEALIUM_ENV
+ARG LD_CLIENT_ID
+ARG TEALIUM_TAG
+ARG API_URL
+
 FROM node:16.19.1-bullseye-slim as builder
 RUN apt-get update; \
     apt-get install -y python3; \
@@ -18,7 +24,7 @@ RUN yarn install --pure-lockfile
 COPY web ./web
 
 WORKDIR /app/web
-RUN LD_CLIENT_ID="1234" TEALIUM_ENV="1234" TEALIUM_TAG="1234" OKTA_DOMAIN="https://dev-26650177.okta.com" yarn build
+RUN API_URL=${API_URL} LD_CLIENT_ID=${LD_CLIENT_ID} TEALIUM_ENV=${TEALIUM_ENV} TEALIUM_TAG=${TEALIUM_TAG} OKTA_DOMAIN=${OKTA_DOMAIN} yarn build
 
 # ---
 
