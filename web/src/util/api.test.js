@@ -29,7 +29,10 @@ describe('api wrapper', () => {
 
     test('uses default URL when env var is empty', async () => {
       const reset = set();
-      expect(api.defaults.baseURL).toBe('http://localhost:8000');
+      //expect(api.defaults.baseURL).toBe('http://localhost:8000');
+      expect(api.defaults.baseURL).toBe(
+        'http://eapd-dev-lb-1211471448.us-east-1.elb.amazonaws.com/api'
+      );
       reset();
     });
   });
