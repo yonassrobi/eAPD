@@ -45,7 +45,7 @@ describe('Login Application', () => {
   beforeEach(() => {
     fetchMock.reset();
     jest.clearAllMocks();
-    fetchMock.onGet('/heartbeat').reply(200, {});
+    fetchMock.onGet('/api/heartbeat').reply(200, {});
   });
 
   it('should renew the session if the user is not authenticated, but they have an access token', async () => {

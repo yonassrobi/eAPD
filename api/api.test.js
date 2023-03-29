@@ -14,8 +14,8 @@ let response;
 let testDbHost;
 
 tap.test('express api', async t => {
-  t.test('GET /heartbeat', async test => {
-    response = await request(api).get('/heartbeat');
+  t.test('GET /api/heartbeat', async test => {
+    response = await request(api).get('/api/heartbeat');
     test.equal(response.status, 204, 'HTTP status set to 204');
   });
 

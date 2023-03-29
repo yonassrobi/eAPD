@@ -113,11 +113,11 @@ api.use(fileUpload());
 // online without triggering any other processing - e.g., no authentication,
 // no cookie/token processing, etc.
 logger.debug('setting up heartbeat endpoints');
-api.get('/heartbeat', (_, res) => {
+api.get('/api/heartbeat', (_, res) => {
   res.status(204).end();
 });
 
-api.get('/heartbeat-db', (_, res) => {
+api.get('/api/heartbeat-db', (_, res) => {
   knex
     .raw('SELECT 1')
     .then(() => {
@@ -128,7 +128,7 @@ api.get('/heartbeat-db', (_, res) => {
     });
 });
 
-api.get('/heartbeat-mongo', (_, res) => {
+api.get('/api/heartbeat-mongo', (_, res) => {
   const status = getConnectionStatus();
   if (status === 'connected') {
     res.status(204).end();

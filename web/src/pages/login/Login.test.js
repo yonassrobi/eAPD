@@ -28,7 +28,7 @@ describe('login component', () => {
   beforeEach(() => {
     defaultProps.login.mockReset();
     fetchMock.reset();
-    fetchMock.onGet('/heartbeat').reply(200, {});
+    fetchMock.onGet('/api/heartbeat').reply(200, {});
   });
 
   it('renders correctly if logged in previously but not logged in now (shows logout notice)', () => {
@@ -120,7 +120,7 @@ describe('login component', () => {
   });
 
   it('should show the warning text if heartbeat returns an error', async () => {
-    fetchMock.onGet('/heartbeat').timeout();
+    fetchMock.onGet('/api/heartbeat').timeout();
     setup();
 
     expect(
