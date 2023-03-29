@@ -37,7 +37,7 @@ const Login = ({ hasEverLoggedOn, errorMessage, fetching, login }) => {
   useEffect(() => {
     const controller = new AbortController();
     axios
-      .get('/api/heartbeat', {
+      .get('/heartbeat', {
         signal: controller.signal
       })
       .then(() => {})

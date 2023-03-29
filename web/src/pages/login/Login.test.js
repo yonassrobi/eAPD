@@ -28,7 +28,7 @@ describe('login component', () => {
   beforeEach(() => {
     defaultProps.login.mockReset();
     fetchMock.reset();
-    fetchMock.onGet('/api/heartbeat').reply(200, {});
+    fetchMock.onGet('/heartbeat').reply(200, {});
   });
 
   it('renders correctly if logged in previously but not logged in now (shows logout notice)', () => {
