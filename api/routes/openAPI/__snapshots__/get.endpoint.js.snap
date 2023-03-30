@@ -3580,7 +3580,7 @@ Object {
         ],
       },
     },
-    "/docs/system-access": Object {
+    "/api/docs/system-access": Object {
       "get": Object {
         "description": "Get the eAPD system access documentation",
         "responses": Object {

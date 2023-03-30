@@ -16,7 +16,7 @@ const getAccountRegistrationDoc = {
 };
 
 const getSystemAccessDoc = {
-  '/docs/system-access': {
+  '/api/docs/system-access': {
     get: {
       tags: ['Docs'],
       description: 'Get the eAPD system access documentation',

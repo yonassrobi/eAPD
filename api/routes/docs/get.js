@@ -24,9 +24,9 @@ export default (app, { getFile = get } = {}) => {
     }
   });
 
-  logger.silly('setting up GET /docs/system-access route');
+  logger.silly('setting up GET /api/docs/system-access route');
 
-  app.get('/docs/system-access', async (req, res, next) => {
+  app.get('/api/docs/system-access', async (req, res, next) => {
     try {
       const file = await getFile(SYSTEM_ACCESS_DOC);
 

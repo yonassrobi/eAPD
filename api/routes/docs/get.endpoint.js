@@ -22,7 +22,7 @@ describe('Document endpoints', () => {
   });
 
   describe('Get help doc | GET /docs/system-access', () => {
-    const url = '/docs/system-access';
+    const url = '/api/docs/system-access';
 
     it('when authenticated', async () => {
       const authApi = login();

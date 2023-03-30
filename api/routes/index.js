@@ -43,11 +43,11 @@ export default (
   // ############### ROUTE REGISTRATION INSERTION POINT #######################
   logger.debug('setting up route for OpenAPI');
 
-  app.get('/open-api', (req, res) => {
+  app.get('/api/open-api', (req, res) => {
     logger.verbose({ id: req.id, message: 'sending OpenAPI documentation' });
     res.send(openAPIdoc);
   });
 
   logger.debug('setting out route for API docs');
-  app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(openAPIdoc));
+  app.use('/api/api-docs', swaggerUi.serve, swaggerUi.setup(openAPIdoc));
 };
