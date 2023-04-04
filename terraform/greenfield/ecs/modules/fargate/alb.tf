@@ -40,8 +40,11 @@ resource "aws_security_group" "allow-external1" {
 
 resource "aws_lb_listener" "lb_listener" {
   load_balancer_arn = aws_lb.lb.arn
-  port              = "80"  
-  protocol          = "HTTP"
+  port              = "443"  
+  protocol          = "HTTPS"
+  ssl_policy        = "ELBSecurityPolicy-2016-08"
+  certificate_arn   = "arn:aws:acm:us-east-1:894719201277:certificate/11b646b4-3b7c-444e-8f78-84b75e7e82de"
+
 
   default_action {
     type             = "forward"

@@ -52,13 +52,13 @@ variable "private_subnets" {
 
 # Docker Images
 variable "web_image" {
-  default     = "894719201277.dkr.ecr.us-east-1.amazonaws.com/eapd-dev-web:3a18958" 
+  default     = "894719201277.dkr.ecr.us-east-1.amazonaws.com/eapd-dev-web:ca3689c" 
   description = "Docker image name with tag for web"
   type        = string
 }
 
 variable "api_image" {
-  default     = "894719201277.dkr.ecr.us-east-1.amazonaws.com/eapd-dev-api:3a18958" 
+  default     = "894719201277.dkr.ecr.us-east-1.amazonaws.com/eapd-dev-api:ca3689c" 
   description = "Docker image name with tag for api"
   type        = string
 }
@@ -84,4 +84,10 @@ variable "task_secrets_policy_name" {
   default     = ""
   description = "task secrets policy name"
   type        = string
+}
+
+variable "recovery_window_in_days" {
+  description = "recovery window in days"
+  type        = number
+  default     = 0
 }

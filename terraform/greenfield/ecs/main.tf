@@ -4,6 +4,25 @@ locals {
 
 data "aws_caller_identity" "current" {}
 
+#Generate a secret token
+resource "random_password" "secret_token" {
+  length           = 12
+  special          = true
+  override_special = "!#$%&*()-_=+[]{}<>:?"
+}
+
+#Push the random password to Aws Secret Manager
+resource "aws_secretsmanager_secret" "secret_token" {
+  name                    = "/eapd/ecs/${var.environment}/JWT_SECRET"
+  recovery_window_in_days = var.recovery_window_in_days
+}
+
+resource "aws_secretsmanager_secret_version" "secret_token" {
+  secret_id      = aws_secretsmanager_secret.secret_token.id
+  secret_string  = random_password.secret_token.result
+  
+}
+
 module "ecs-fargate-service" {
   source              = "./modules/fargate"
   name_prefix         = local.name_prefix
@@ -22,21 +41,87 @@ module "ecs-fargate-service" {
   api_image           = var.api_image
 
   web_definitions = {
-    "API_URL" = "",
+    "TEALIUM_ENV" = "dev"
   }
   api_definitions = {
-    "API_URL" = "",
-    "JWT_SECRET" = "1234",
-    "NODE_ENV" = "development",
-    "PORT" = "8000",
-    "OKTA_API_KEY" = "1234",
-    "OKTA_CLIENT_ID" = "1234",
-    "OKTA_DOMAIN" = "https://dev-26650177.okta.com",
-    "OKTA_SERVER_ID" = "1234"
+    "API_PORT" = "8001",
+    "API_URL" = "/api",
+    "PORT" = "8001"
   }
-  web_secrets = []
-  api_secrets = []
+  web_secrets = [
+     {
+      name: "OKTA_CLIENT_ID",
+      valueFrom: "arn:aws:secretsmanager:us-east-1:${data.aws_caller_identity.current.account_id}:secret:/eapd/ecs/dev/OKTA_CLIENT_ID-OP4UBg"
+    },
+    {
+      name: "OKTA_API_KEY",
+      valueFrom: "arn:aws:secretsmanager:us-east-1:${data.aws_caller_identity.current.account_id}:secret:/eapd/ecs/dev/OKTA_API_KEY-w3MP4c"
+    },
+    {
+      name: "LD_API_KEY",
+      valueFrom: "arn:aws:secretsmanager:us-east-1:${data.aws_caller_identity.current.account_id}:secret:/eapd/ecs/dev/LD_API_KEY-ptvikE"
+    },
+    {
+      name: "LD_CLIENT_ID",
+      valueFrom: "arn:aws:secretsmanager:us-east-1:${data.aws_caller_identity.current.account_id}:secret:/eapd/ecs/dev/LD_CLIENT_ID-rhSOpE"
+    },
+    {
+      name: "TEALIUM_TAG",
+      valueFrom: "arn:aws:secretsmanager:us-east-1:${data.aws_caller_identity.current.account_id}:secret:/eapd/ecs/dev/TEALIUM_TAG-VfS970"
+    },
+    {
+      name: "SNYK_API_KEY",
+      valueFrom: "arn:aws:secretsmanager:us-east-1:${data.aws_caller_identity.current.account_id}:secret:/eapd/ecs/dev/TEALIUM_TAG-VfS970"
+    },
+    {
+      name: "OKTA_SERVER_ID",
+      valueFrom: "arn:aws:secretsmanager:us-east-1:${data.aws_caller_identity.current.account_id}:secret:/eapd/ecs/dev/OKTA_SERVER_ID-W5Clw1"
+    },
+    {
+      name: "OKTA_DOMAIN",
+      valueFrom: "arn:aws:secretsmanager:us-east-1:${data.aws_caller_identity.current.account_id}:secret:/eapd/ecs/dev/OKTA_DOMAIN-fGZrNh"
+    }
+
+  ]
+  api_secrets = [
+    {
+      name: "API_DATABASE_URL",
+      valueFrom: "arn:aws:secretsmanager:us-east-1:${data.aws_caller_identity.current.account_id}:secret:/eapd/ecs/dev/API_DATABASE_URL-BGjGVt"
+    },
+    {
+      name: "LD_API_KEY",
+      valueFrom: "arn:aws:secretsmanager:us-east-1:${data.aws_caller_identity.current.account_id}:secret:/eapd/ecs/dev/LD_API_KEY-ptvikE"
+    },
+    {
+      name: "LD_CLIENT_ID",
+      valueFrom: "arn:aws:secretsmanager:us-east-1:${data.aws_caller_identity.current.account_id}:secret:/eapd/ecs/dev/LD_CLIENT_ID-rhSOpE"
+    },
+    {
+      name: "MONGO_URL",
+      valueFrom: "arn:aws:secretsmanager:us-east-1:${data.aws_caller_identity.current.account_id}:secret:/eapd/ecs/dev/MONGO_URL-m2vZP1"
+    },
+    {
+      name: "OKTA_API_KEY",
+      valueFrom: "arn:aws:secretsmanager:us-east-1:${data.aws_caller_identity.current.account_id}:secret:/eapd/ecs/dev/OKTA_API_KEY-w3MP4c"
+    },
+    {
+      name: "OKTA_CLIENT_ID",
+      valueFrom: "arn:aws:secretsmanager:us-east-1:${data.aws_caller_identity.current.account_id}:secret:/eapd/ecs/dev/OKTA_CLIENT_ID-OP4UBg"
+    },
+    {
+      name: "OKTA_SERVER_ID",
+      valueFrom: "arn:aws:secretsmanager:us-east-1:${data.aws_caller_identity.current.account_id}:secret:/eapd/ecs/dev/OKTA_SERVER_ID-W5Clw1"
+    },
+    {
+      name: "JWT_SECRET",
+      valueFrom: "${aws_secretsmanager_secret.secret_token.arn}"
+    },
+    {
+      name: "OKTA_DOMAIN",
+      valueFrom: "arn:aws:secretsmanager:us-east-1:${data.aws_caller_identity.current.account_id}:secret:/eapd/ecs/dev/OKTA_DOMAIN-fGZrNh"
+    }
+  ]
 
   web_health_check_path   = "/"
-  api_health_check_path   = "/heartbeat"  
+  api_health_check_path   = "/api/heartbeat"  
 }

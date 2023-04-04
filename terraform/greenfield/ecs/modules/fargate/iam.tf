@@ -27,3 +27,6 @@ resource "aws_iam_role_policy_attachment" "task-secrets" {
   role       = aws_iam_role.task.name
   policy_arn = "arn:aws:iam::${var.aws_account}:policy/delegatedadmin/developer/${var.task_secrets_policy_name}"
 }
+
+
+

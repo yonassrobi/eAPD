@@ -76,7 +76,7 @@ resource "aws_ecs_service" "api_service" {
   network_configuration {
     assign_public_ip = "true"
     security_groups  = [aws_security_group.allow-external.id]
-    subnets          = var.vpc_public_subnets
+    subnets          = var.vpc_private_subnets
   }
 
   depends_on = [
