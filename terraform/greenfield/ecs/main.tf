@@ -51,31 +51,31 @@ module "ecs-fargate-service" {
   web_secrets = [
      {
       name: "OKTA_CLIENT_ID",
-      valueFrom: "arn:aws:secretsmanager:us-east-1:${data.aws_caller_identity.current.account_id}:secret:/eapd/ecs/dev/OKTA_CLIENT_ID-OP4UBg"
+      valueFrom: "arn:aws:secretsmanager:us-east-1:${data.aws_caller_identity.current.account_id}:secret:/eapd/ecs/dev/apI_definition-DhHcRi"
     },
     {
       name: "OKTA_API_KEY",
-      valueFrom: "arn:aws:secretsmanager:us-east-1:${data.aws_caller_identity.current.account_id}:secret:/eapd/ecs/dev/OKTA_API_KEY-w3MP4c"
+      valueFrom: "arn:aws:secretsmanager:us-east-1:${data.aws_caller_identity.current.account_id}:secret:/eapd/ecs/dev/apI_definition-DhHcRi"
     },
     {
       name: "LD_API_KEY",
-      valueFrom: "arn:aws:secretsmanager:us-east-1:${data.aws_caller_identity.current.account_id}:secret:/eapd/ecs/dev/LD_API_KEY-ptvikE"
+      valueFrom: "arn:aws:secretsmanager:us-east-1:${data.aws_caller_identity.current.account_id}:secret:/eapd/ecs/dev/apI_definition-DhHcRi"
     },
     {
       name: "LD_CLIENT_ID",
-      valueFrom: "arn:aws:secretsmanager:us-east-1:${data.aws_caller_identity.current.account_id}:secret:/eapd/ecs/dev/LD_CLIENT_ID-rhSOpE"
+      valueFrom: "arn:aws:secretsmanager:us-east-1:${data.aws_caller_identity.current.account_id}:secret:/eapd/ecs/dev/apI_definition-DhHcRi"
     },
     {
       name: "TEALIUM_TAG",
-      valueFrom: "arn:aws:secretsmanager:us-east-1:${data.aws_caller_identity.current.account_id}:secret:/eapd/ecs/dev/TEALIUM_TAG-VfS970"
+      valueFrom: "arn:aws:secretsmanager:us-east-1:${data.aws_caller_identity.current.account_id}:secret:/eapd/ecs/dev/apI_definition-DhHcRi"
     },
     {
       name: "SNYK_API_KEY",
-      valueFrom: "arn:aws:secretsmanager:us-east-1:${data.aws_caller_identity.current.account_id}:secret:/eapd/ecs/dev/TEALIUM_TAG-VfS970"
+      valueFrom: "arn:aws:secretsmanager:us-east-1:${data.aws_caller_identity.current.account_id}:secret:/eapd/ecs/dev/apI_definition-DhHcRi"
     },
     {
       name: "OKTA_SERVER_ID",
-      valueFrom: "arn:aws:secretsmanager:us-east-1:${data.aws_caller_identity.current.account_id}:secret:/eapd/ecs/dev/OKTA_SERVER_ID-W5Clw1"
+      valueFrom: "arn:aws:secretsmanager:us-east-1:${data.aws_caller_identity.current.account_id}:secret:/eapd/ecs/dev/apI_definition-DhHcRi"
     },
     {
       name: "OKTA_DOMAIN",
@@ -86,31 +86,31 @@ module "ecs-fargate-service" {
   api_secrets = [
     {
       name: "API_DATABASE_URL",
-      valueFrom: "arn:aws:secretsmanager:us-east-1:${data.aws_caller_identity.current.account_id}:secret:/eapd/ecs/dev/API_DATABASE_URL-BGjGVt"
+      valueFrom: "arn:aws:secretsmanager:us-east-1:${data.aws_caller_identity.current.account_id}:secret:/eapd/ecs/dev/apI_definition-DhHcRi"
     },
     {
       name: "LD_API_KEY",
-      valueFrom: "arn:aws:secretsmanager:us-east-1:${data.aws_caller_identity.current.account_id}:secret:/eapd/ecs/dev/LD_API_KEY-ptvikE"
+      valueFrom: "arn:aws:secretsmanager:us-east-1:${data.aws_caller_identity.current.account_id}:secret:/eapd/ecs/dev/apI_definition-DhHcRi"
     },
     {
       name: "LD_CLIENT_ID",
-      valueFrom: "arn:aws:secretsmanager:us-east-1:${data.aws_caller_identity.current.account_id}:secret:/eapd/ecs/dev/LD_CLIENT_ID-rhSOpE"
+      valueFrom: "arn:aws:secretsmanager:us-east-1:${data.aws_caller_identity.current.account_id}:secret:/eapd/ecs/dev/apI_definition-DhHcRi"
     },
     {
       name: "MONGO_URL",
-      valueFrom: "arn:aws:secretsmanager:us-east-1:${data.aws_caller_identity.current.account_id}:secret:/eapd/ecs/dev/MONGO_URL-m2vZP1"
+      valueFrom: "arn:aws:secretsmanager:us-east-1:${data.aws_caller_identity.current.account_id}:secret:/eapd/ecs/dev/apI_definition-DhHcRi"
     },
     {
       name: "OKTA_API_KEY",
-      valueFrom: "arn:aws:secretsmanager:us-east-1:${data.aws_caller_identity.current.account_id}:secret:/eapd/ecs/dev/OKTA_API_KEY-w3MP4c"
+      valueFrom: "arn:aws:secretsmanager:us-east-1:${data.aws_caller_identity.current.account_id}:secret:/eapd/ecs/dev/apI_definition-DhHcRi"
     },
     {
       name: "OKTA_CLIENT_ID",
-      valueFrom: "arn:aws:secretsmanager:us-east-1:${data.aws_caller_identity.current.account_id}:secret:/eapd/ecs/dev/OKTA_CLIENT_ID-OP4UBg"
+      valueFrom: "arn:aws:secretsmanager:us-east-1:${data.aws_caller_identity.current.account_id}:secret:/eapd/ecs/dev/apI_definition-DhHcRi"
     },
     {
       name: "OKTA_SERVER_ID",
-      valueFrom: "arn:aws:secretsmanager:us-east-1:${data.aws_caller_identity.current.account_id}:secret:/eapd/ecs/dev/OKTA_SERVER_ID-W5Clw1"
+      valueFrom: "arn:aws:secretsmanager:us-east-1:${data.aws_caller_identity.current.account_id}:secret:/eapd/ecs/dev/apI_definition-DhHcRi"
     },
     {
       name: "JWT_SECRET",

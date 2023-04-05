@@ -137,6 +137,7 @@ variable "aws_secretsmanager_secret_name" {
 variable "recovery_window_in_days" {
   description = "recovery window in days"
   type        = number
+  default     = 0
 }
 
 # Cloudwatch Log group

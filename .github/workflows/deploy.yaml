@@ -54,7 +54,7 @@ jobs:
         run: |
           # Build a docker container and push it to ECR
           export IMAGE_TAG=$(git rev-parse --short "$GITHUB_SHA")
-          docker build --quiet -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG --build-arg API_URL=$API_URL --build-arg LD_CLIENT_ID=$LD_CLIENT_ID --build-arg TEALIUM_ENV=$TEALIUM_ENV --build-arg TEALIUM_TAG=TEALIUM_TAG --build-arg OKTA_DOMAIN=$OKTA_DOMAIN -f web/Dockerfile .
+          docker build --quiet -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG --build-arg  --build-arg LD_CLIENT_ID=$LD_CLIENT_ID --build-arg TEALIUM_ENV=$TEALIUM_ENV --build-arg TEALIUM_TAG=TEALIUM_TAG --build-arg OKTA_DOMAIN=$OKTA_DOMAIN -f web/Dockerfile .
           echo "Pushing image to ECR..."
           export WEB_IMAGE=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           docker push $WEB_IMAGE
