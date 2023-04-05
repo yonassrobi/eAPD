@@ -1,7 +1,7 @@
 import { requiresAuth, jsonResponse, arrayOf } from '../openAPI/helpers.js';
 
 const openAPI = {
-  '/apds': {
+  '/api/apds': {
     get: {
       tags: ['APDs'],
       summary: 'Get all of the APDs available to the user',
@@ -59,7 +59,7 @@ const openAPI = {
     }
   },
 
-  '/apds/{id}': {
+  '/api/apds/{id}': {
     get: {
       tags: ['APDs'],
       summary: 'Get a single, complete APD',

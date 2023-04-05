@@ -20,7 +20,7 @@ export default (
 ) => {
   logger.silly('setting up GET /apds route');
 
-  app.get('/apds', can('view-document'), async (req, res, next) => {
+  app.get('/api/apds', can('view-document'), async (req, res, next) => {
     logger.silly({ id: req.id, message: 'handling GET /apds' });
 
     try {
@@ -65,7 +65,7 @@ export default (
   });
 
   app.get(
-    '/apds/:id([0-9a-fA-F]{24}$)',
+    '/api/apds/:id([0-9a-fA-F]{24}$)',
     can('view-document'),
     async (req, res, next) => {
       logger.silly({ id: req.id, message: 'handling GET /apds/:id' });

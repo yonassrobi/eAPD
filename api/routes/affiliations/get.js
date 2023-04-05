@@ -8,7 +8,7 @@ export default (
   app,
   { getAffiliationsByUserId = _getAffiliationsByUserId } = {}
 ) => {
-  app.get('/affiliations/me', loggedIn, async (request, response, next) => {
+  app.get('/api/affiliations/me', loggedIn, async (request, response, next) => {
     logger.info({
       id: request.id,
       message: `handling GET /me endpoint}`

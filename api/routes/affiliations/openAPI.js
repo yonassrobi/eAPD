@@ -66,7 +66,7 @@ const getMyAffiliations = {
 };
 
 const affiliationRoutes = {
-  '/affiliations/me': {
+  '/api/affiliations/me': {
     ...getMyAffiliations
   }
 };
