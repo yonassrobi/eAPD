@@ -42,7 +42,7 @@ const openapi = {
     ...users,
 
     // ############## OPENAPI PATH INSERTION POINT ######################
-    '/open-api': {
+    '/api/open-api': {
       get: {
         tags: ['Metadata'],
         summary: 'Gets this document',

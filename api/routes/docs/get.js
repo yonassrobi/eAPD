@@ -9,7 +9,7 @@ const SYSTEM_ACCESS_DOC = 'eAPDSystemAccess.pdf';
 export default (app, { getFile = get } = {}) => {
   logger.silly('setting up GET /docs/account-registration route');
 
-  app.get('/docs/account-registration', async (req, res, next) => {
+  app.get('/api/docs/account-registration', async (req, res, next) => {
     try {
       const file = await getFile(ACCOUNT_REGISTRATION_DOC);
 
