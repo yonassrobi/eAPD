@@ -128,7 +128,7 @@ const userObjectSchema = {
 };
 
 const openAPI = {
-  '/users/{id}': {
+  '/api/users/{id}': {
     get: {
       tags: ['Users'],
       summary: 'Gets the information for a specific user',

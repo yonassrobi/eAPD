@@ -11,7 +11,7 @@ export default (
   logger.silly('setting up GET /auth/certifications route');
 
   app.get(
-    '/auth/certifications',
+    '/api/auth/certifications',
     loggedIn,
     can('view-state-certifications'),
     async (req, res, next) => {

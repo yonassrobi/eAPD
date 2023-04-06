@@ -21,7 +21,7 @@ export default (
   } = {}
 ) => {
   app.get(
-    '/states/:stateId/affiliations',
+    '/api/states/:stateId/affiliations',
     can('view-affiliations'),
     validForState('stateId'),
     async (request, response, next) => {
@@ -59,7 +59,7 @@ export default (
   );
 
   app.get(
-    '/states/:stateId/affiliations/:id',
+    '/api/states/:stateId/affiliations/:id',
     can('view-affiliations'),
     validForState('stateId'),
     async (request, response, next) => {

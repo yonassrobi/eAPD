@@ -19,7 +19,7 @@ const roleObjectSchema = {
 };
 
 const openAPI = {
-  '/auth/roles': {
+  '/api/auth/roles': {
     get: {
       tags: ['Authentication and authorization'],
       summary: 'Gets the list of all roles',

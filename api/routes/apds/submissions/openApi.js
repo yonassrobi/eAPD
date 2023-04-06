@@ -1,7 +1,7 @@
 import { arrayOf, jsonResponse } from '../../openAPI/helpers.js';
 
 export default {
-  '/apds/submissions': {
+  '/api/apds/submissions': {
     get: {
       tags: ['APDs'],
       summary: 'Get all of the APDs that have been submitted',

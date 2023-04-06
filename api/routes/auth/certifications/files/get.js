@@ -13,7 +13,7 @@ export default (
   logger.silly('setting up GET /auth/certifications/files/:fileID route');
 
   app.get(
-    '/auth/certifications/files/:fileID',
+    '/api/auth/certifications/files/:fileID',
     loggedIn,
     can('view-state-certifications'),
     async (req, res, next) => {

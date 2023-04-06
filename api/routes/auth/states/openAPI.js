@@ -16,7 +16,7 @@ const stateId = {
 };
 
 const openAPI = {
-  '/auth/state/{stateId}': {
+  '/api/auth/state/{stateId}': {
     get: {
       tags: ['Authentication and authorization'],
       parameters: [

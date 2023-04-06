@@ -8,7 +8,7 @@ export default (app, { createEventForAPD = ce } = {}) => {
   logger.debug('setting up POST /apds/:id/events route');
 
   app.post(
-    '/apds/:id/events',
+    '/api/apds/:id/events',
     can('view-document'),
     userCanAccessAPD(),
     async (req, res) => {

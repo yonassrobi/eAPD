@@ -19,7 +19,7 @@ const roleSchema = {
 };
 
 const getRoles = {
-  '/roles': {
+  '/api/roles': {
     get: {
       tags: ['Roles'],
       description: 'Get a list of all of the active roles',

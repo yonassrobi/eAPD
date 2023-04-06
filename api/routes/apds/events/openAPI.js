@@ -1,7 +1,7 @@
 import { requiresAuth, jsonResponse } from '../../openAPI/helpers.js';
 
 const openAPI = {
-  '/apds/{id}/events': {
+  '/api/apds/{id}/events': {
     post: {
       tags: ['APDs', 'events'],
       summary: 'Log an event performed on an APD',

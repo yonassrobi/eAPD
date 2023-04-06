@@ -35,7 +35,7 @@ const fullStateSchema = {
 };
 
 const getStates = {
-  '/states': {
+  '/api/states': {
     get: {
       tags: ['States'],
       description: 'Get a list of all US States and Territories',
@@ -50,7 +50,7 @@ const getStates = {
 };
 
 const getState = {
-  '/states/{id}': {
+  '/api/states/{id}': {
     get: {
       tags: ['States'],
       description: 'Get a single US State or Territiory',

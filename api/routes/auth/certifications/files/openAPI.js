@@ -1,7 +1,7 @@
 import { requiresAuth, jsonResponse } from '../../../openAPI/helpers.js';
 
 const getStateCertificationFile = {
-  '/auth/certifications/files/{fileID}': {
+  '/api/auth/certifications/files/{fileID}': {
     get: {
       tags: ['files'],
       summary: 'Get a state admin certification letter',
@@ -31,7 +31,7 @@ const getStateCertificationFile = {
 };
 
 const postStateCertificationFile = {
-  '/auth/certifications/files': {
+  '/api/auth/certifications/files': {
     post: {
       tags: ['files'],
       summary: 'Upload a state admin certification file',

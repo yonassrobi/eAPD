@@ -1,7 +1,7 @@
 import { requiresAuth } from '../../openAPI/helpers.js';
 
 const stateCertifications = {
-  '/auth/certifications': {
+  '/api/auth/certifications': {
     get: {
       tags: ['Certifications'],
       summary: 'Retrieve the Add State Certifications and additional details',

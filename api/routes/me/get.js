@@ -18,7 +18,7 @@ export default (
   } = {}
 ) => {
   logger.debug('setting up GET endpoint');
-  app.get('/me', async (req, res, next) => {
+  app.get('/api/me', async (req, res, next) => {
     try {
       // when getting the user's data, the eAPD token is supplied,
       // so the verifier should be the eAPD verifier
@@ -30,7 +30,7 @@ export default (
     }
   });
 
-  app.get('/me/jwToken', async (req, res, next) => {
+  app.get('/api/me/jwToken', async (req, res, next) => {
     try {
       // when exchaning tokens, you switch an Okta token for a EAPD token,
       // so the verifier should be the Okta verifier

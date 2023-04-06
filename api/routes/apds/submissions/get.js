@@ -10,7 +10,7 @@ export default (
 ) => {
   logger.silly('setting up GET /apds/submissions route');
 
-  app.get('/apds/submissions', async (req, res, next) => {
+  app.get('/api/apds/submissions', async (req, res, next) => {
     let ip = req?.headers?.['x-forwarded-for'] || req?.ip || '';
     ip = ip.toString().replace('::ffff:', '');
     const sharepoint = await getLaunchDarklyFlag(

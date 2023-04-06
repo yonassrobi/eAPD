@@ -21,7 +21,7 @@ export default (
   logger.silly('setting up POST /apds/:id/files route');
 
   app.post(
-    '/apds/:id/files',
+    '/api/apds/:id/files',
     can('view-document'),
     userCanEditAPD(),
     async (req, res, next) => {

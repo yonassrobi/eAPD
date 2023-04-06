@@ -13,7 +13,7 @@ export default (
   logger.silly('setting up POST /auth/certifications/files route');
 
   app.post(
-    '/auth/certifications/files',
+    '/api/auth/certifications/files',
     loggedIn,
     can('edit-state-certifications'),
     async (req, res, next) => {

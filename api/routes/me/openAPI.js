@@ -125,7 +125,7 @@ const userObj = jsonResponse({
 });
 
 const getUser = {
-  '/me': {
+  '/api/me': {
     get: {
       tags: ['Users'],
       summary: `Gets the current user's information`,

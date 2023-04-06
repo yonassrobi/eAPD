@@ -179,11 +179,11 @@ const patchAffiliation = {
 };
 
 const affiliationRoutes = {
-  '/states/{stateId}/affiliations': {
+  '/api/states/{stateId}/affiliations': {
     ...getAffiliationByState,
     ...postAffiliations
   },
-  '/states/{stateId}/affiliations/{id}': {
+  '/api/states/{stateId}/affiliations/{id}': {
     ...getAffiliation,
     ...patchAffiliation
   }

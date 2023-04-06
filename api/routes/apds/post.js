@@ -7,7 +7,7 @@ const logger = loggerFactory('apds route post');
 
 export default (app, { createAPD = ga, getStateProfile = gs } = {}) => {
   logger.silly('setting up POST /apds/ route');
-  app.post('/apds', can('edit-document'), async (req, res, next) => {
+  app.post('/api/apds', can('edit-document'), async (req, res, next) => {
     logger.silly({ id: req.id, message: 'handling POST /apds route' });
 
     try {

@@ -9,7 +9,7 @@ export default (app, { fileBelongsToAPD = fb, getFile = get } = {}) => {
   logger.silly('setting up GET /apds/:id/files/:fileID route');
 
   app.get(
-    '/apds/:id/files/:fileID',
+    '/api/apds/:id/files/:fileID',
     can('view-document'),
     async (req, res, next) => {
       try {

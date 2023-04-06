@@ -1,7 +1,7 @@
 import { changeState as cs } from '../../../auth/jwtUtils.js';
 
 export default (app, { changeState = cs } = {}) => {
-  app.get('/auth/state/:stateId', async (req, res) => {
+  app.get('/api/auth/state/:stateId', async (req, res) => {
     const { stateId } = req.params;
     const user = req.user;
     if (!user) return res.status(401).send();

@@ -7,7 +7,7 @@ const logger = loggerFactory('affiliations route post');
 
 export default app => {
   app.post(
-    '/states/:stateId/affiliations',
+    '/api/states/:stateId/affiliations',
     loggedIn,
     (request, response, next) => {
       const userId = request.user.id;

@@ -8,7 +8,7 @@ export default (app, { addStateAdminCertification = addCert } = {}) => {
   logger.silly('setting up POST /auth/certifications route');
 
   app.post(
-    '/auth/certifications',
+    '/api/auth/certifications',
     loggedIn,
     can('edit-state-certifications'),
     async (req, res, next) => {

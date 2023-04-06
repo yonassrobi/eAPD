@@ -1,7 +1,7 @@
 import { requiresAuth, jsonResponse, arrayOf } from '../../openAPI/helpers.js';
 
 const openAPI = {
-  '/auth/activities': {
+  '/api/auth/activities': {
     get: {
       tags: ['Authentication and authorization'],
       summary: 'Gets the list of all activities',

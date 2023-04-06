@@ -10,7 +10,7 @@ export default (app, { getAllActiveRoles = gr } = {}) => {
     'eAPD Federal Admin': ['eAPD Federal Admin', 'eAPD State Admin'],
     'eAPD State Admin': ['eAPD State Staff', 'eAPD State Contractor']
   };
-  app.get('/roles', can('view-roles'), async (req, res, next) => {
+  app.get('/api/roles', can('view-roles'), async (req, res, next) => {
     logger.silly({ id: req.id, message: 'handling GET /roles' });
 
     try {

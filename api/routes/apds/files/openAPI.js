@@ -1,7 +1,7 @@
 import { requiresAuth, jsonResponse } from '../../openAPI/helpers.js';
 
 const openAPI = {
-  '/apds/{id}/files': {
+  '/api/apds/{id}/files': {
     post: {
       tags: ['APDs', 'files'],
       summary: 'Upload a file associated with an APD',
@@ -72,7 +72,7 @@ const openAPI = {
 };
 
 const getApdFile = {
-  '/apds/{id}/files/{fileID}': {
+  '/api/apds/{id}/files/{fileID}': {
     get: {
       tags: ['APDs', 'files'],
       summary: 'Get a file associated with an APD',
