@@ -40,7 +40,9 @@ jobs:
       #     node yaml-tests.js
       - name: frontend_lint
         working-directory: ./web
-        run: yarn lint
+        run: |
+          npm init @eslint/config
+          yarn lint
 
   # terraform:
   #   name: ${{matrix.runner}} - stage
