@@ -16,7 +16,7 @@ permissions:
 
 concurrency: ${{ github.head_ref || github.ref_name || github.run_id }}
 jobs:
-  dependency vulnerability scan:
+  dependency_vulnerability_scan:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
