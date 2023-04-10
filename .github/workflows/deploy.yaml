@@ -41,9 +41,9 @@ jobs:
       - name: frontend_lint
         working-directory: ./web
         run: |
-          npm install -g eslint
-          npm install eslint-plugin-import@latest --save-dev
-          yarn lint --force
+          # npm install -g eslint
+          # npm install eslint-plugin-import@latest --save-dev
+          yarn lint
 
   # terraform:
   #   name: ${{matrix.runner}} - stage
