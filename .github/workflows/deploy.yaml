@@ -41,7 +41,7 @@ jobs:
       - name: frontend_lint
         working-directory: ./web
         run: |
-          npm install --save-dev eslint
+          npm install -g eslint
           yarn lint
 
   # terraform:
