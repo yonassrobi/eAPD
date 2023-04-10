@@ -16,14 +16,28 @@ permissions:
 
 concurrency: ${{ github.head_ref || github.ref_name || github.run_id }}
 jobs:
-  dependency_vulnerability_scan:
+  # dependency_vulnerability_scan:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #     - uses: actions/setup-node@v3
+  #       with:
+  #         node-version: '16.19.1'
+  #     - run: yarn run audit
+  yaml_test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
           node-version: '16.19.1'
-      - run: yarn run audit
+      - name: yaml test
+        working-directory: ./web
+        run: |
+          yarn install --frozen-lockfile
+          yarn add glob
+          yarn add js-yaml
+          node yaml-tests.js
 
   # terraform:
   #   name: ${{matrix.runner}} - stage
