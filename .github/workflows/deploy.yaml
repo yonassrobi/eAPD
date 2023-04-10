@@ -38,11 +38,15 @@ jobs:
       #     yarn add glob
       #     yarn add js-yaml
       #     node yaml-tests.js
+      - name: backend_lint
+        working-directory: ./api
+        run: |
+          npm install -g eslint
+          yarn lint
       - name: frontend_lint
         working-directory: ./web
         run: |
           npm install -g eslint
-          npm install eslint-plugin-import eslint-plugin-flowtype eslint-plugin-jsx-a11y eslint-plugin-react
           yarn lint
 
   # terraform:
