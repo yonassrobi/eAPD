@@ -43,7 +43,7 @@ jobs:
         run: |
           npm install -g eslint
           npm install eslint-plugin-import@latest --save-dev
-          yarn lint
+          yarn lint --force
 
   # terraform:
   #   name: ${{matrix.runner}} - stage
