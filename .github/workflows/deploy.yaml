@@ -41,7 +41,7 @@ jobs:
       - name: frontend_lint
         working-directory: ./web
         run: |
-          # npm install -g eslint
+          npm install -g eslint
           # npm install eslint-plugin-import@latest --save-dev
           yarn lint
 
