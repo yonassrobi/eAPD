@@ -42,7 +42,7 @@ jobs:
         working-directory: ./web
         run: |
           npm install -g eslint
-          # npm install eslint-plugin-import@latest --save-dev
+          npm install eslint-plugin-import eslint-plugin-flowtype eslint-plugin-jsx-a11y eslint-plugin-react
           yarn lint
 
   # terraform:
