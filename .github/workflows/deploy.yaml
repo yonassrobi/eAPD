@@ -16,7 +16,6 @@ permissions:
 
 concurrency: ${{ github.head_ref || github.ref_name || github.run_id }}
 jobs:
-  jobs:
   dependency vulnerability scan:
     runs-on: ubuntu-latest
     steps:
