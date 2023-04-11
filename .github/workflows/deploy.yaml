@@ -46,8 +46,8 @@ jobs:
           [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
           nvm install 16.19.1
           nvm alias default 16.19.1
-          echo 'export NVM_DIR="$HOME/.nvm"' >> $BASH_ENV
-          echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"' >> $BASH_ENV
+          echo 'export NVM_DIR="$HOME/.nvm"' >> $GITHUB_ENV
+          echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"' >> $GITHUB_ENV
 
       - name: dependency vulnerability scan
         continue-on-error: true
