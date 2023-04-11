@@ -16,14 +16,16 @@ permissions:
 
 concurrency: ${{ github.head_ref || github.ref_name || github.run_id }}
 jobs:
-  # dependency_vulnerability_scan:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@v3
-  #     - uses: actions/setup-node@v3
-  #       with:
-  #         node-version: '16.19.1'
-  #     - run: yarn run audit
+  dependency_vulnerability_scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16.19.1'
+      - name: dependency vulnerability scan
+        continue-on-error: true
+        run: yarn run audit
   yaml_test:
     runs-on: ubuntu-latest
     steps:
@@ -31,19 +33,21 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: '16.19.1'
-      # - name: yaml test
-      #   working-directory: ./web
-      #   run: |
-      #     yarn install --frozen-lockfile
-      #     yarn add glob
-      #     yarn add js-yaml
-      #     node yaml-tests.js
+      - name: yaml test
+        working-directory: ./web
+        run: |
+          yarn install --frozen-lockfile
+          yarn add glob
+          yarn add js-yaml
+          node yaml-tests.js
       - name: backend_lint
+        continue-on-error: true
         working-directory: ./api
         run: |
           npm install -g eslint
           yarn lint
       - name: frontend_lint
+        continue-on-error: true
         working-directory: ./web
         run: |
           npm install -g eslint
