@@ -1,0 +1,29 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Action": ["cloudwatch:PutMetricData"],
+      "Effect": "Allow",
+      "Resource": "*"
+    },
+    {
+      "Action": [
+        "logs:CreateLogGroup",
+        "logs:CreateLogStream",
+        "logs:PutLogEvents"
+      ],
+      "Effect": "Allow",
+      "Resource": "*"
+    },
+    {
+      "Action": [
+        "ssm:StartAutomationExecution",
+        "ecr:*",
+        "iam:PassRole",
+        "securityhub:UpdateFindings"
+      ],
+      "Effect": "Allow",
+      "Resource": "*"
+    }
+  ]
+}
