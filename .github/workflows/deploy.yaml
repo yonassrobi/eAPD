@@ -14,8 +14,7 @@ concurrency: ${{ github.head_ref || github.ref_name || github.run_id }}
 jobs:
   zap_scan:
     permissions:
-      - read-all
-      - write-all
+      contents: write
     runs-on: ubuntu-latest
     name: Scan ZAP website
     steps:
