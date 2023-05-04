@@ -29,5 +29,5 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           target: 'https://www.zaproxy.org/'
-          gen_file: 'owasp/zap-baseline.conf'
+          rules_file_name: 'owasp/rules.tsv'
           cmd_options: '-a'
