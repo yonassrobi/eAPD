@@ -30,4 +30,5 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           target: 'https://www.zaproxy.org/'
           rules_file_name: 'owasp/rules.tsv'
+          fail_action: 'false'
           cmd_options: '-a'
