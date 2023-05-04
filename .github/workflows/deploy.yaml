@@ -27,10 +27,10 @@ jobs:
           ls
           docker run -v $(pwd):/zap/wrk/:rw -t owasp/zap2docker-stable zap-baseline.py -t https://www.zaproxy.org/ -c rules.tsv
 
-      - name: ZAP Scan
-        uses: zaproxy/action-baseline@v0.3.0
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          target: 'https://www.zaproxy.org/'
-          rules_file_name: 'rules.tsv'
-          cmd_options: '-I'
+      # - name: ZAP Scan
+      #   uses: zaproxy/action-baseline@v0.3.0
+      #   with:
+      #     token: ${{ secrets.GITHUB_TOKEN }}
+      #     target: 'https://www.zaproxy.org/'
+      #     rules_file_name: 'rules.tsv'
+      #     cmd_options: '-I'
