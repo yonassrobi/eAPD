@@ -21,7 +21,9 @@ jobs:
         uses: actions/checkout@v2
         with:
           ref: zap
+
       - name: zap scan with docker image
+        permissions: read-all|write-all
         continue-on-error: true
         run: |
           ls
