@@ -10,10 +10,6 @@ defaults:
   run:
     shell: bash
 
-permissions:
-  id-token: write
-  contents: read
-
 concurrency: ${{ github.head_ref || github.ref_name || github.run_id }}
 jobs:
   zap_scan:
@@ -25,6 +21,10 @@ jobs:
         uses: actions/checkout@v2
         with:
           ref: zap
+      - name: Get registration token
+        id: getRegToken
+        run: |
+          curl -X POST -H \"Accept: application/vnd.github.v3+json\"  -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' https://api.github.com/repos/myprofile/myrepo/actions/runners/registration-tok
       - name: ZAP Scan
         uses: zaproxy/action-baseline@v0.3.0
         with:
