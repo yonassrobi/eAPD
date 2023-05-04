@@ -25,6 +25,6 @@
 50001	WARN	(Script Passive Scan Rules)
 90001	WARN	(Insecure JSF ViewState)
 90011	WARN	(Charset Mismatch)
-90022	WARN	(Application Error Disclosure)
+90022	FAIL	(Application Error Disclosure)
 90030	WARN	(WSDL File Passive Scanner)
 90033	WARN	(Loosely Scoped Cookie)
