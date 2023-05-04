@@ -13,7 +13,7 @@ defaults:
 concurrency: ${{ github.head_ref || github.ref_name || github.run_id }}
 jobs:
   zap_scan:
-    permissions: write-all
+    permissions: read-all|write-all
     runs-on: ubuntu-latest
     name: Scan ZAP website
     steps:
@@ -23,7 +23,6 @@ jobs:
           ref: zap
 
       - name: zap scan with docker image
-        permissions: read-all|write-all
         continue-on-error: true
         run: |
           ls
