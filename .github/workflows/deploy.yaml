@@ -26,8 +26,7 @@ jobs:
       - name: zap scan with docker image
         continue-on-error: true
         run: |
-          ls
-          docker run -v $(pwd):/zap/wrk/:rw -t owasp/zap2docker-stable zap-baseline.py -t https://www.zaproxy.org/ -c owasp/rules.tsv -a -I
+          docker run -v $(pwd):/zap/wrk/:rw -t owasp/zap2docker-stable zap-baseline.py -t https://www.zaproxy.org/ -c owasp/rules.tsv -a -d -j
 
       # - name: ZAP Scan
       #   uses: zaproxy/action-baseline@v0.3.0
